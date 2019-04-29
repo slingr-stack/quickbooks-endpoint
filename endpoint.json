@@ -1,0 +1,119 @@
+{
+  "label": "QuickBooks",
+  "name": "quickbooks",
+  "apiVersion": "v1",
+  "internal": false,
+  "configurationType": "GLOBAL",
+  "deployment": {
+    "profiles": [
+      {
+        "name": "default",
+        "label": "Default",
+        "memory": 256,
+        "description": "Default configuration"
+      }
+    ],
+    "allowMultipleInstances": false
+  },
+  "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/quickbooks.png",
+  "configurationHelpUrl": "/endpoints_quickbooks.html#configuration",
+  "status": "ACTIVE",
+  "stores": [],
+  "events": [
+    {
+      "label": "Webhook",
+      "name": "webhook",
+      "description": "Notifications from QuickBooks about entities"
+    }
+  ],
+  "functions": [
+    {
+      "label": "GET",
+      "name": "_get"
+    },
+    {
+      "label": "POST",
+      "name": "_post"
+    },
+    {
+      "label": "Convert date to time",
+      "name": "_convertDateToTimestamp"
+    },
+    {
+      "label": "Format from milliseconds",
+      "name": "_formatFromMillis"
+    }
+  ],
+  "scripts": [
+    "quickbooks-fn-helpers.js",
+    "functions.js"
+  ],
+  "configuration": [
+    {
+      "name": "clientId",
+      "label": "Client ID",
+      "type": "text",
+      "required": true
+    },{
+      "name": "clientSecret",
+      "label": "Client Secret",
+      "type": "text",
+      "required": true
+    },{
+      "name": "companyId",
+      "label": "Company ID",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "accessToken",
+      "label": "Access Token",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "refreshToken",
+      "label": "Refresh Token",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "quickBooksEnvironment",
+      "label": "QuickBooks environment",
+      "type": "buttonsGroup",
+      "required": true,
+      "defaultValue": "SANDBOX",
+      "typeOptions": {
+          "allowCustom": true,
+          "possibleValues":[
+              {
+                  "label":"Sandbox",
+                  "name":"SANDBOX"
+              },
+              {
+                  "label":"Production",
+                  "name":"PRODUCTION"
+              }
+          ]
+      }
+    },
+    {
+      "name": "verifierToken",
+      "label": "Webhooks Verifier Token",
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "configuration",
+      "label": "Configuration",
+      "value": "To obtain the requested fields for configuration you need to log in to your intuit developer account and go to <a href='https://developer.intuit.com/v2/ui#/playground' target='_blank'>Test connect to app (OAuth)</a>. On this page you need to: <ul><li>Complete the form selecting the app you want to configure on the endpoint.</li><li>Once you select the app the Client ID and Client Secret fields are being populated. You can copy this values to the endpoint configuration.</li><li>Select the Scopes (Accounting is the only available for now).</li><li>Click on Get authorization code and authorize the app.</li><li>Then click on Get Tokens button.</li><li>Once you have the Tokens you can start making calls to the API. On this screen you need to access to the step 4 and copy the Access Token and the Refresh Token to the endpoint configuration.</li></ul>",
+      "type": "info"
+    },
+    {
+        "name": "webhook",
+        "label": "Webhook URL",
+        "type": "label",
+        "value": "@config.WEBHOOK_URL"
+    }
+  ]
+}
