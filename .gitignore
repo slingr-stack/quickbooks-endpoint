@@ -3,3 +3,4 @@ target/
 .idea/
 endpoint_proxy.properties
 /bin/
+endpoint_local.json
