@@ -1,18 +1,10 @@
 package io.slingr.endpoints.quickbooks;
 
-import com.intuit.oauth2.client.OAuth2PlatformClient;
-import com.intuit.oauth2.config.Environment;
-import com.intuit.oauth2.config.OAuth2Config;
-import com.intuit.oauth2.config.Scope;
-import com.intuit.oauth2.exception.InvalidRequestException;
 import io.slingr.endpoints.HttpEndpoint;
 import io.slingr.endpoints.exceptions.EndpointException;
-import io.slingr.endpoints.framework.annotations.EndpointFunction;
-import io.slingr.endpoints.framework.annotations.EndpointProperty;
-import io.slingr.endpoints.framework.annotations.EndpointWebService;
-import io.slingr.endpoints.framework.annotations.SlingrEndpoint;
+import io.slingr.endpoints.framework.annotations.*;
 import io.slingr.endpoints.services.HttpService;
-import io.slingr.endpoints.services.exchange.ReservedName;
+import io.slingr.endpoints.services.datastores.DataStore;
 import io.slingr.endpoints.services.rest.RestClient;
 import io.slingr.endpoints.services.rest.RestMethod;
 import io.slingr.endpoints.utils.Json;
@@ -31,10 +23,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 
 /**
  * QuickBooks endpoint
@@ -52,6 +42,10 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     private static final String QUICKBOOKS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
     private static final String INTUIT_SIGNATURE = "intuit-signature";
     private static final String ALGORITHM = "HmacSHA256";
+    private static final String TOKENS_DATASTORE = "tokens";
+
+    @EndpointDataStore(name = TOKENS_DATASTORE)
+    private DataStore tokensDataStore;
 
     @EndpointProperty
     private String clientId;
@@ -92,6 +86,12 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     }
 
     private void refreshQuickBooksToken() {
+
+        Json lastToken = tokensDataStore.findById("lastToken");
+        if(lastToken != null){
+            logger.info("Using token from data store");
+        }
+
         Form formBody = new Form().param("grant_type", "refresh_token").param("refresh_token", refreshToken);
         Json refreshTokenResponse = RestClient.builder(QUICKBOOKS_REFRESH_TOKEN_URL)
                 .header("Content-Type", "application/x-www-form-urlencoded")
@@ -144,90 +144,6 @@ public class QuickBooksEndpoint extends HttpEndpoint {
             }
             throw restException;
         }
-    }
-
-    private final String AUTH_CALLBACK = "authCallback";
-    private final String BASE_URL = "https://testendpoint.idea2.io/dev/endpoints/proxy";
-
-    @EndpointFunction(name="_test")
-    public Json testEndpoint(FunctionRequest request){
-
-        logger.info("Running test");
-
-        OAuth2Config oauth2Config = new OAuth2Config.OAuth2ConfigBuilder(clientId, clientSecret) //set client id, secret
-                .callDiscoveryAPI(Environment.SANDBOX) // call discovery API to populate urls
-                .buildConfig();
-
-        OAuth2PlatformClient client= new OAuth2PlatformClient(oauth2Config);
-
-        String csrf = oauth2Config.generateCSRFToken();
-
-        List<Scope> scopes = new ArrayList<Scope>();
-        scopes.add(Scope.Accounting);
-
-        String redirectUri = BASE_URL + "/" + AUTH_CALLBACK;
-
-        try {
-            String url = oauth2Config.prepareUrl(scopes, redirectUri, csrf);
-            System.out.println(url);
-        } catch (InvalidRequestException e) {
-            e.printStackTrace();
-        }
-
-        return Json.map();
-    }
-
-    @EndpointWebService(path = "authCallback", methods = RestMethod.GET)
-    public Json authCallbackEndpoint(WebServiceRequest request){
-
-        logger.info("Running auth callback");
-
-        logger.info(request.getPath());
-
-        return Json.map();
-    }
-
-
-    @EndpointFunction(name = ReservedName.CONNECT_USER)
-    public Json connectUser(FunctionRequest request) {
-        final String userId = request.getUserId();
-//        if (StringUtils.isNotBlank(userId)) {
-//            // checks if the user includes a non-empty 'code' on the request
-//            final Json jsonBody = request.getJsonParams();
-//            if (jsonBody != null) {
-//
-//                String apiKey = jsonBody.string(UserData.API_KEY);
-//                String apiSecretKey = jsonBody.string(UserData.API_SECRET);
-//                String passphrase = jsonBody.string(UserData.PASSPHRASE);
-//
-//                if (StringUtils.isBlank(apiKey) || StringUtils.isBlank(apiSecretKey) || StringUtils.isBlank(passphrase)) {
-//                    logger.warn(String.format("AIP key, API secret and passphrase are required. User [%s] won't be connected.", userId));
-//                    appLogger.warn(String.format("AIP key, API secret and passphrase are required. User [%s] won't be connected.", userId));
-//
-//                    defaultMethodDisconnectUsers(request);
-//                    return Json.map();
-//                }
-//
-//                Json userConnectionData = Json.map()
-//                        .set(UserData.API_KEY, apiKey)
-//                        .set(UserData.API_SECRET, apiSecretKey)
-//                        .set(UserData.PASSPHRASE, passphrase);
-//
-//                // saves the information on the users data store
-//                Json conf = users().save(userId, userConnectionData);
-//                logger.info(String.format("User connected [%s]", userId));
-//
-//                // sends connected user event
-//                users().sendUserConnectedEvent(request.getFunctionId(), userId, conf);
-//
-//                return conf;
-//
-//            } else {
-//                logger.info(String.format("Empty payload received when try to connect user [%s] [%s]", userId, request.getParams() != null ? request.getParams().toString() : "-"));
-//            }
-//        }
-//        defaultMethodDisconnectUsers(request);
-        return Json.map();
     }
 
     private boolean checkInvalidTokenError(Exception e) {

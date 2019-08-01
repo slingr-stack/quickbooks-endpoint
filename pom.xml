@@ -48,27 +48,27 @@
 
         <!--This dependencies can be needed once we have an implementation of oAuth 2-->
         <!-- data jar -->
-        <dependency>
-            <groupId>com.intuit.quickbooks-online</groupId>
-            <artifactId>ipp-v3-java-data</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.intuit.quickbooks-online</groupId>-->
+        <!--            <artifactId>ipp-v3-java-data</artifactId>-->
+        <!--            <version>3.0.0</version>-->
+        <!--        </dependency>-->
 
         <!-- devkit jar with dependencies-->
-        <dependency>
-            <groupId>com.intuit.quickbooks-online</groupId>
-            <artifactId>ipp-v3-java-devkit</artifactId>
-            <classifier>jar-with-dependencies</classifier>
-            <version>3.0.0</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.intuit.quickbooks-online</groupId>-->
+        <!--            <artifactId>ipp-v3-java-devkit</artifactId>-->
+        <!--            <classifier>jar-with-dependencies</classifier>-->
+        <!--            <version>3.0.0</version>-->
+        <!--        </dependency>-->
 
         <!-- oauth2 platform api jar with dependencies-->
-        <dependency>
-            <groupId>com.intuit.quickbooks-online</groupId>
-            <artifactId>oauth2-platform-api</artifactId>
-            <classifier>jar-with-dependencies</classifier>
-            <version>3.0.0</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.intuit.quickbooks-online</groupId>-->
+        <!--            <artifactId>oauth2-platform-api</artifactId>-->
+        <!--            <classifier>jar-with-dependencies</classifier>-->
+        <!--            <version>3.0.0</version>-->
+        <!--        </dependency>-->
 
         <!-- Testing Modules -->
         <dependency>

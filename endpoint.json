@@ -18,7 +18,9 @@
   "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/quickbooks.png",
   "configurationHelpUrl": "/endpoints_quickbooks.html#configuration",
   "status": "ACTIVE",
-  "stores": [],
+  "stores": [
+    {"name": "tokens"}
+  ],
   "events": [
     {
       "label": "Webhook",
@@ -42,10 +44,6 @@
     {
       "label": "Format from milliseconds",
       "name": "_formatFromMillis"
-    },
-    {
-      "label": "Test Endpoint",
-      "name": "_test"
     }
   ],
   "scripts": [
@@ -114,27 +112,10 @@
       "type": "info"
     },
     {
-      "name": "oauthCallback",
-      "label": "OAuth callback",
-      "description": "The OAuth callback",
-      "type": "label",
-      "value": "config.WEBHOOK_URL+'/authCallback'"
-    },
-    {
         "name": "webhook",
         "label": "Webhook URL",
         "type": "label",
         "value": "@config.WEBHOOK_URL"
-    },
-    {
-      "name": "connectButton",
-      "label": "Connect to Service",
-      "type": "button",
-      "typeOptions": {
-        "color": "primary",
-        "icon": "zmdi-play",
-        "action": "utils.connectToService();"
-      }
     }
   ]
 }
