@@ -134,8 +134,7 @@
         "color": "primary",
         "icon": "zmdi-play",
         "action": "utils.connectToService();"
-      },
-      "visibility": "config.ENDPOINT_STATUS == 'DISCONNECTED'"
+      }
     }
   ]
 }
