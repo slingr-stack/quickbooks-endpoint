@@ -25,6 +25,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * QuickBooks endpoint
@@ -43,6 +46,12 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     private static final String INTUIT_SIGNATURE = "intuit-signature";
     private static final String ALGORITHM = "HmacSHA256";
     private static final String TOKENS_DATASTORE = "tokens";
+    private static final String TOKENS_DATASTORE_ID = "_id";
+    private static final String TOKENS_DATASTORE_TIMESTAMP = "timestamp";
+    private static final String TOKENS_DATASTORE_REFRESH_TOKEN = "refreshToken";
+    private static final String TOKENS_DATASTORE_ACCESS_TOKEN = "accessToken";
+
+    private static final long TOKEN_REFRESH_POLLING_TIME = TimeUnit.MINUTES.toMillis(50);
 
     @EndpointDataStore(name = TOKENS_DATASTORE)
     private DataStore tokensDataStore;
@@ -68,6 +77,8 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     @EndpointProperty
     private String verifierToken;
 
+    private ScheduledExecutorService cleanerExecutor;
+
     @Override
     public String getApiUri() {
         switch (quickBooksEnvironment.toUpperCase()) {
@@ -81,18 +92,36 @@ public class QuickBooksEndpoint extends HttpEndpoint {
 
     @Override
     public void endpointStarted() {
-        httpService().setupBearerAuthenticationHeader(accessToken);
+        Json lastToken = getLastToken();
+        httpService().setupBearerAuthenticationHeader(lastToken.string(TOKENS_DATASTORE_ACCESS_TOKEN));
         httpService().setupDefaultHeader("Accept", "application/json");
+
+        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(this::refreshQuickBooksToken, TOKEN_REFRESH_POLLING_TIME, TOKEN_REFRESH_POLLING_TIME, TimeUnit.MILLISECONDS);
+    }
+
+    private Json getLastToken() {
+
+        try {
+            return tokensDataStore.findById("lastToken");
+        } catch (Exception ex) {
+            logger.info("Token was not found. Store from settings.");
+            Json lastToken = Json.map();
+            lastToken.set(TOKENS_DATASTORE_ID, "lastToken");
+            lastToken.set(TOKENS_DATASTORE_TIMESTAMP, System.currentTimeMillis());
+            lastToken.set(TOKENS_DATASTORE_REFRESH_TOKEN, refreshToken);
+            lastToken.set(TOKENS_DATASTORE_ACCESS_TOKEN, accessToken);
+            tokensDataStore.save(lastToken);
+            logger.info("Using token from data store");
+            return lastToken;
+        }
     }
 
     private void refreshQuickBooksToken() {
 
-        Json lastToken = tokensDataStore.findById("lastToken");
-        if(lastToken != null){
-            logger.info("Using token from data store");
-        }
+        Json lastToken = getLastToken();
+        String refreshTokenDs = lastToken.string(TOKENS_DATASTORE_REFRESH_TOKEN);
 
-        Form formBody = new Form().param("grant_type", "refresh_token").param("refresh_token", refreshToken);
+        Form formBody = new Form().param("grant_type", "refresh_token").param("refresh_token", refreshTokenDs);
         Json refreshTokenResponse = RestClient.builder(QUICKBOOKS_REFRESH_TOKEN_URL)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .header("Accept", "application/json")
@@ -100,6 +129,9 @@ public class QuickBooksEndpoint extends HttpEndpoint {
                 .post(formBody);
         refreshToken = refreshTokenResponse.string("refresh_token");
         accessToken = refreshTokenResponse.string("access_token");
+        lastToken.set(TOKENS_DATASTORE_REFRESH_TOKEN, refreshToken);
+        lastToken.set(TOKENS_DATASTORE_ACCESS_TOKEN, accessToken);
+        tokensDataStore.save(lastToken);
         endpointStarted();
     }
 
