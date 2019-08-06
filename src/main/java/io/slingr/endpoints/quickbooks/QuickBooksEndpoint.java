@@ -5,7 +5,6 @@ import io.slingr.endpoints.exceptions.EndpointException;
 import io.slingr.endpoints.framework.annotations.*;
 import io.slingr.endpoints.services.HttpService;
 import io.slingr.endpoints.services.datastores.DataStore;
-import io.slingr.endpoints.services.rest.RestClient;
 import io.slingr.endpoints.services.rest.RestMethod;
 import io.slingr.endpoints.utils.Json;
 import io.slingr.endpoints.ws.exchange.FunctionRequest;
@@ -17,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import javax.ws.rs.core.Form;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -40,20 +38,14 @@ public class QuickBooksEndpoint extends HttpEndpoint {
 
     private static final String QUICKBOOKS_SANDBOX_URL = "https://sandbox-quickbooks.api.intuit.com/v3/company/%s/";
     private static final String QUICKBOOKS_PRODUCTION_URL = "https://quickbooks.api.intuit.com/v3/company/%s/";
-    private static final String QUICKBOOKS_REFRESH_TOKEN_URL = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
     private static final String INVALID_TOKEN_ERROR = "Bearer realm=\"Intuit\", error=\"invalid_token\"";
     private static final String QUICKBOOKS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
     private static final String INTUIT_SIGNATURE = "intuit-signature";
     private static final String ALGORITHM = "HmacSHA256";
-    private static final String TOKENS_DATASTORE = "tokens";
-    private static final String TOKENS_DATASTORE_ID = "_id";
-    private static final String TOKENS_DATASTORE_TIMESTAMP = "timestamp";
-    private static final String TOKENS_DATASTORE_REFRESH_TOKEN = "refreshToken";
-    private static final String TOKENS_DATASTORE_ACCESS_TOKEN = "accessToken";
 
     private static final long TOKEN_REFRESH_POLLING_TIME = TimeUnit.MINUTES.toMillis(50);
 
-    @EndpointDataStore(name = TOKENS_DATASTORE)
+    @EndpointDataStore(name = TokenManager.DATA_STORE)
     private DataStore tokensDataStore;
 
     @EndpointProperty
@@ -79,6 +71,8 @@ public class QuickBooksEndpoint extends HttpEndpoint {
 
     private ScheduledExecutorService cleanerExecutor;
 
+    private TokenManager tokenManager;
+
     @Override
     public String getApiUri() {
         switch (quickBooksEnvironment.toUpperCase()) {
@@ -92,52 +86,15 @@ public class QuickBooksEndpoint extends HttpEndpoint {
 
     @Override
     public void endpointStarted() {
-        Json lastToken = getLastToken();
-        httpService().setupBearerAuthenticationHeader(lastToken.string(TOKENS_DATASTORE_ACCESS_TOKEN));
-        httpService().setupDefaultHeader("Accept", "application/json");
 
-        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(this::refreshQuickBooksToken, TOKEN_REFRESH_POLLING_TIME, TOKEN_REFRESH_POLLING_TIME, TimeUnit.MILLISECONDS);
-    }
+        this.tokenManager = new TokenManager(httpService(), tokensDataStore, clientId, clientSecret, accessToken, refreshToken, verifierToken);
 
-    private Json getLastToken() {
-
-        try {
-            return tokensDataStore.findById("lastToken");
-        } catch (Exception ex) {
-            logger.info("Token was not found. Store from settings.");
-            Json lastToken = Json.map();
-            lastToken.set(TOKENS_DATASTORE_ID, "lastToken");
-            lastToken.set(TOKENS_DATASTORE_TIMESTAMP, System.currentTimeMillis());
-            lastToken.set(TOKENS_DATASTORE_REFRESH_TOKEN, refreshToken);
-            lastToken.set(TOKENS_DATASTORE_ACCESS_TOKEN, accessToken);
-            tokensDataStore.save(lastToken);
-            logger.info("Using token from data store");
-            return lastToken;
-        }
-    }
-
-    private void refreshQuickBooksToken() {
-
-        Json lastToken = getLastToken();
-        String refreshTokenDs = lastToken.string(TOKENS_DATASTORE_REFRESH_TOKEN);
-
-        Form formBody = new Form().param("grant_type", "refresh_token").param("refresh_token", refreshTokenDs);
-        Json refreshTokenResponse = RestClient.builder(QUICKBOOKS_REFRESH_TOKEN_URL)
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .header("Accept", "application/json")
-                .basicAuthenticationHeader(clientId, clientSecret)
-                .post(formBody);
-        refreshToken = refreshTokenResponse.string("refresh_token");
-        accessToken = refreshTokenResponse.string("access_token");
-        lastToken.set(TOKENS_DATASTORE_REFRESH_TOKEN, refreshToken);
-        lastToken.set(TOKENS_DATASTORE_ACCESS_TOKEN, accessToken);
-        tokensDataStore.save(lastToken);
-        endpointStarted();
+        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(tokenManager::refreshQuickBooksToken, TOKEN_REFRESH_POLLING_TIME, TOKEN_REFRESH_POLLING_TIME, TimeUnit.MILLISECONDS);
     }
 
     @EndpointWebService
     public WebServiceResponse webhooks(WebServiceRequest request) {
-        if (request.getMethod().equals(RestMethod.POST) && request.getBody() instanceof String) {
+        if (request.getMethod().equals(RestMethod.POST) && request.getBody() != null) {
             //verifying signature
             if (verifyWebHooksSignature(request.getHeader(INTUIT_SIGNATURE), request.getBody().toString())) {
                 // send the webhook event
@@ -156,7 +113,7 @@ public class QuickBooksEndpoint extends HttpEndpoint {
         } catch (EndpointException restException) {
             if (checkInvalidTokenError(restException)) {
                 //needs to refresh token
-                refreshQuickBooksToken();
+                tokenManager.refreshQuickBooksToken();
                 return defaultPostRequest(request);
             }
             throw restException;
@@ -171,7 +128,7 @@ public class QuickBooksEndpoint extends HttpEndpoint {
         } catch (EndpointException restException) {
             if (checkInvalidTokenError(restException)) {
                 //needs to refresh token
-                refreshQuickBooksToken();
+                tokenManager.refreshQuickBooksToken();
                 return defaultGetRequest(request);
             }
             throw restException;
@@ -220,14 +177,14 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     }
 
     private boolean verifyWebHooksSignature(String signature, String payload) {
-        if (StringUtils.isBlank(verifierToken)) {
+        if (StringUtils.isBlank(tokenManager.getVerifierToken())) {
             return true;//we can't verify the signature since the verifier token is not configured
         }
         if (signature == null) {
             return false;
         }
         try {
-            SecretKeySpec secretKey = new SecretKeySpec(verifierToken.getBytes("UTF-8"), ALGORITHM);
+            SecretKeySpec secretKey = new SecretKeySpec(tokenManager.getVerifierToken().getBytes("UTF-8"), ALGORITHM);
             Mac mac = Mac.getInstance(ALGORITHM);
             mac.init(secretKey);
             // TODO check if is possible to replace with Base64Utils.encode()
