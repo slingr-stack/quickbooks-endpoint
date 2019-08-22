@@ -743,17 +743,26 @@ var apiURLs = {
     ]
 };
 
+var setMinorVersion = function (url) {
+
+    if (url && endp._configuration && endp._configuration.minorVersion) {
+        url += url.indexOf('?') > 0 ? '&' : '?';
+        url += 'minorversion='+endp._configuration.minorVersion;
+    }
+    return url;
+};
+
 var parse = function (str) {
     try {
         if (arguments.length > 1) {
             var args = arguments[1],
                 i = 0;
-            return str.replace(/:(\w+)/g, function () {
+            return setMinorVersion(str.replace(/:(\w+)/g, function () {
                 return args[i++];
-            });
+            }));
         } else {
             if (str) {
-                return str;
+                return setMinorVersion(str);
             }
             throw 'Function is not valid.';
         }
@@ -846,7 +855,7 @@ var makeEndpointsHelpers = function () {
     MESSAGE += '//                                                                        //\n';
     MESSAGE += '////////////////////////////////////////////////////////////////////////////\n';
 
-    CODE = MESSAGE + '\n\nvar urlsData = ' + JSON.stringify(urlsData, null, "\t") + ';\n\nvar parse = ' + parse.toString() + ';\n\n' + CODE;
+    CODE = MESSAGE + '\n\nvar urlsData = ' + JSON.stringify(urlsData, null, "\t") + ';\n\nvar setMinorVersion = ' + setMinorVersion.toString() + ';\n\nvar parse = ' + parse.toString() + ';\n\n' + CODE;
 
 };
 

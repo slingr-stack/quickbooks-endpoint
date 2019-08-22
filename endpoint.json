@@ -106,6 +106,15 @@
       "required": false
     },
     {
+      "name": "minorVersion",
+      "label": "Minor Version",
+      "type": "text",
+      "required": true,
+      "typeOptions": {
+        "validation": "number"
+      }
+    },
+    {
       "name": "configuration",
       "label": "Configuration",
       "value": "To obtain the requested fields for configuration you need to log in to your intuit developer account and go to <a href='https://developer.intuit.com/v2/ui#/playground' target='_blank'>Test connect to app (OAuth)</a>. On this page you need to: <ul><li>Complete the form selecting the app you want to configure on the endpoint.</li><li>Once you select the app the Client ID and Client Secret fields are being populated. You can copy this values to the endpoint configuration.</li><li>Select the Scopes (Accounting is the only available for now).</li><li>Click on Get authorization code and authorize the app.</li><li>Then click on Get Tokens button.</li><li>Once you have the Tokens you can start making calls to the API. On this screen you need to access to the step 4 and copy the Access Token and the Refresh Token to the endpoint configuration.</li></ul>",
