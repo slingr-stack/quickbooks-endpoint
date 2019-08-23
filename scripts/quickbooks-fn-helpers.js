@@ -413,26 +413,17 @@ var urlsData = {
 	}
 };
 
-var setMinorVersion = function (url) {
-
-    if (url && endp._configuration && endp._configuration.minorVersion) {
-        url += url.indexOf('?') > 0 ? '&' : '?';
-        url += 'minorversion='+endp._configuration.minorVersion;
-    }
-    return url;
-};
-
 var parse = function (str) {
     try {
         if (arguments.length > 1) {
             var args = arguments[1],
                 i = 0;
-            return setMinorVersion(str.replace(/:(\w+)/g, function () {
+            return str.replace(/:(\w+)/g, function () {
                 return args[i++];
-            }));
+            });
         } else {
             if (str) {
-                return setMinorVersion(str);
+                return str;
             }
             throw 'Function is not valid.';
         }
