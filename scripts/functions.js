@@ -41,12 +41,25 @@ endpoint.dates.fromDate = function (date) {
 // Public API - Generic Functions
 ///////////////////////////////////
 
+var setMinorVersion = function (url) {
+
+    sys.logs.info(JSON.stringify(endpoint._configuration))
+
+    if (url && endpoint._configuration && endpoint._configuration.minorVersion) {
+        url += url.indexOf('?') > 0 ? '&' : '?';
+        url += 'minorversion=' + endpoint._configuration.minorVersion;
+    }
+    return url;
+};
+
 endpoint.get = function (url) {
+    url = setMinorVersion(url);
     var options = checkHttpOptions(url, {});
     return endpoint._get(options);
 };
 
 endpoint.post = function (url, options) {
+    url = setMinorVersion(url);
     options = checkHttpOptions(url, options);
     return endpoint._post(options);
 };
