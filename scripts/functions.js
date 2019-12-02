@@ -42,9 +42,6 @@ endpoint.dates.fromDate = function (date) {
 ///////////////////////////////////
 
 var setMinorVersion = function (url) {
-
-    sys.logs.info(JSON.stringify(endpoint._configuration))
-
     if (url && endpoint._configuration && endpoint._configuration.minorVersion) {
         url += url.indexOf('?') > 0 ? '&' : '?';
         url += 'minorversion=' + endpoint._configuration.minorVersion;
