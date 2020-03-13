@@ -105,6 +105,9 @@ var urlsData = {
 		"invoice.delete": {
 			"0": "invoice?operation=delete"
 		},
+		"invoice.send": {
+			"1": "invoice/:entityId/send"
+		},
 		"item.create": {
 			"0": "item"
 		},
@@ -793,6 +796,17 @@ endpoint.invoice.delete = function() {
 		sys.logs.warn('wrong numbers of arguments for invoice.delete.post');
 	}
 	var url = parse(urlsData['post']['invoice.delete'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
+	sys.logs.debug('[QuickBooks] POST from: ' + url);
+	return endpoint.post(url, arguments[arguments.length - 1]);
+};
+
+endpoint.invoice.send = {};
+endpoint.invoice.send = function() {
+	var size = arguments.length > 0 ? arguments.length : 0;
+	if(size <= 0) { return;
+		sys.logs.warn('wrong numbers of arguments for invoice.send.post');
+	}
+	var url = parse(urlsData['post']['invoice.send'][size - 1], Array.prototype.slice.call(arguments, 0, size-1));
 	sys.logs.debug('[QuickBooks] POST from: ' + url);
 	return endpoint.post(url, arguments[arguments.length - 1]);
 };

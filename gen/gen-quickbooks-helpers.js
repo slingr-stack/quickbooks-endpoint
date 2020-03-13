@@ -336,6 +336,11 @@ var apiURLs = {
             'name': 'Query',
             'operation': 'GET',
             'url': '/company/:companyId/query?query=:query'
+        },
+        {
+            'name': 'Send',
+            'operation': 'POST',
+            'url': '/company/:companyId/invoice/:entityId/send'
         }
     ],
     'Item': [
