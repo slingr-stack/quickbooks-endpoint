@@ -106,7 +106,7 @@ var urlsData = {
 			"0": "invoice?operation=delete"
 		},
 		"invoice.send": {
-			"1": "invoice/:entityId/send"
+			"2": "invoice/:entityId/send?sentTo=:emailAddress"
 		},
 		"item.create": {
 			"0": "item"
