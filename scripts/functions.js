@@ -71,13 +71,12 @@ endpoint.query = function (query) {
 /////////////////////////////
 
 var checkHttpOptions = function (url, options) {
-    options = options || {};
     if (!!url) {
         if (isObject(url)) {
             // take the 'url' parameter as the options
             options = url || {};
         } else {
-            if (!!options.path || !!options.params || !!options.body) {
+            if (options && (!!options.path || !!options.params || !!options.body)) {
                 // options contains the http package format
                 options.path = url;
             } else {
@@ -89,7 +88,7 @@ var checkHttpOptions = function (url, options) {
             }
         }
     }
-    return options;
+    return options || {};
 };
 
 var isObject = function (obj) {
