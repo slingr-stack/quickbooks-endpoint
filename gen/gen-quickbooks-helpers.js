@@ -340,7 +340,7 @@ var apiURLs = {
         {
             'name': 'Send',
             'operation': 'POST',
-            'url': '/company/:companyId/invoice/:entityId/send?sendTo=:emailAddress'
+            'url': '/company/:companyId/invoice/:entityId/send'
         }
     ],
     'Item': [
