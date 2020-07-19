@@ -49,9 +49,9 @@ var setMinorVersion = function (url) {
     return url;
 };
 
-endpoint.get = function (url) {
+endpoint.get = function (url, options) {
     url = setMinorVersion(url);
-    var options = checkHttpOptions(url, {});
+    var options = checkHttpOptions(url, options);
     return endpoint._get(options);
 };
 

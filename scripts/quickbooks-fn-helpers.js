@@ -362,6 +362,9 @@ var urlsData = {
 		"salesReceipt.read": {
 			"1": "salesreceipt/:entityId"
 		},
+		"salesReceipt.getPdf": {
+            "1": "salesreceipt/:entityId/pdf"
+        },
 		"salesReceipt.query": {
 			"1": "query?query=:query"
 		},
