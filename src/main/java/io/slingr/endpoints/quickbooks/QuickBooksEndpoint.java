@@ -3,6 +3,7 @@ package io.slingr.endpoints.quickbooks;
 import io.slingr.endpoints.HttpEndpoint;
 import io.slingr.endpoints.exceptions.EndpointException;
 import io.slingr.endpoints.framework.annotations.*;
+import io.slingr.endpoints.services.AppLogs;
 import io.slingr.endpoints.services.HttpService;
 import io.slingr.endpoints.services.datastores.DataStore;
 import io.slingr.endpoints.services.rest.RestMethod;
@@ -40,7 +41,7 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     private static final String QUICKBOOKS_PRODUCTION_URL = "https://quickbooks.api.intuit.com/v3/company/%s/";
     private static final String INVALID_TOKEN_ERROR = "Bearer realm=\"Intuit\", error=\"invalid_token\"";
     private static final String QUICKBOOKS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
-    private static final String INTUIT_SIGNATURE = "intuit-signature";
+    private static final String INTUIT_SIGNATURE = "Intuit-Signature";
     private static final String ALGORITHM = "HmacSHA256";
 
     private static final long TOKEN_REFRESH_POLLING_TIME = TimeUnit.MINUTES.toMillis(50);
@@ -68,6 +69,9 @@ public class QuickBooksEndpoint extends HttpEndpoint {
 
     @EndpointProperty
     private String verifierToken;
+
+    @ApplicationLogger
+    private AppLogs appLogger;
 
     private ScheduledExecutorService cleanerExecutor;
 
@@ -100,6 +104,9 @@ public class QuickBooksEndpoint extends HttpEndpoint {
                 // send the webhook event
                 final Json json = HttpService.defaultWebhookConverter(request);
                 events().send(HttpService.WEBHOOK_EVENT, json);
+            } else {
+                appLogger.warn("Webhook was not processed due to invalid signature");
+                return HttpService.defaultWebhookResponse("Invalid signature", 403);
             }
         }
         return HttpService.defaultWebhookResponse();
