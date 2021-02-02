@@ -99,13 +99,18 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     @EndpointWebService
     public WebServiceResponse webhooks(WebServiceRequest request) {
         if (request.getMethod().equals(RestMethod.POST) && request.getBody() != null) {
-            //verifying signature
-            if (verifyWebHooksSignature(request.getHeader(INTUIT_SIGNATURE), request.getBody().toString())) {
+            // verifying signature
+            String signature = request.getHeader(INTUIT_SIGNATURE);
+            if (StringUtils.isBlank(signature)) {
+                // try to get signature using lower case as sometimes it seems to come like this
+                signature = request.getHeader(INTUIT_SIGNATURE.toLowerCase());
+            }
+            if (verifyWebHooksSignature(signature, request.getBody().toString())) {
                 // send the webhook event
                 final Json json = HttpService.defaultWebhookConverter(request);
                 events().send(HttpService.WEBHOOK_EVENT, json);
             } else {
-                appLogger.warn("Webhook was not processed due to invalid signature");
+                appLogger.warn("Webhook was not processed due to invalid signature: "+signature);
                 return HttpService.defaultWebhookResponse("Invalid signature", 403);
             }
         }
