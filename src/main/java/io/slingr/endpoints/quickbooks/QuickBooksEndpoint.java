@@ -110,7 +110,7 @@ public class QuickBooksEndpoint extends HttpEndpoint {
                 final Json json = HttpService.defaultWebhookConverter(request);
                 events().send(HttpService.WEBHOOK_EVENT, json);
             } else {
-                appLogger.warn("Webhook was not processed due to invalid signature: "+signature);
+                appLogger.warn("Webhook was not processed due to invalid signature: "+signature+". Body: "+request.getRawBody());
                 return HttpService.defaultWebhookResponse("Invalid signature", 403);
             }
         }
