@@ -189,14 +189,14 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     }
 
     private boolean verifyWebHooksSignature(String signature, String payload) {
-        if (StringUtils.isBlank(tokenManager.getVerifierToken())) {
+        if (StringUtils.isBlank(verifierToken)) {
             return true;//we can't verify the signature since the verifier token is not configured
         }
         if (signature == null) {
             return false;
         }
         try {
-            SecretKeySpec secretKey = new SecretKeySpec(tokenManager.getVerifierToken().getBytes("UTF-8"), ALGORITHM);
+            SecretKeySpec secretKey = new SecretKeySpec(verifierToken.getBytes("UTF-8"), ALGORITHM);
             Mac mac = Mac.getInstance(ALGORITHM);
             mac.init(secretKey);
             // TODO check if is possible to replace with Base64Utils.encode()
