@@ -105,7 +105,7 @@ public class QuickBooksEndpoint extends HttpEndpoint {
                 // try to get signature using lower case as sometimes it seems to come like this
                 signature = request.getHeader(INTUIT_SIGNATURE.toLowerCase());
             }
-            if (verifyWebHooksSignature(signature, request.getBody().toString())) {
+            if (verifyWebHooksSignature(signature, request.getRawBody())) {
                 // send the webhook event
                 final Json json = HttpService.defaultWebhookConverter(request);
                 events().send(HttpService.WEBHOOK_EVENT, json);
