@@ -980,11 +980,146 @@ For more information about how shortcuts or flow steps works, and how they are g
 
 
 
-### Custom Flow Steps Name
+### Create Account
 
-Description of Custom Flow Steps
+This step allow you to create a new account in the system of quickbook accounting.
 
-*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
+<h3>Inputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Visibility</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Name</td>
+        <td>text</td>
+        <td>yes</td>
+        <td></td>
+        <td> Allways </td>
+        <td> Name for the account </td>
+    </tr>
+    <tr>
+        <td>Account Type</td>
+        <td>choice</td>
+        <td>yes</td>
+        <td> - </td>
+        <td>Always</td>
+        <td>
+            This is the Account Type required by Quickbook. <br>
+            Possible values are: <br>
+            <i><strong>Bank, Other Current Asset, Fixed Asset, Other Asset, Accounts Receivable</strong></i>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Outputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+### Create Costumer
+
+This step allow you to create a new costumer in the system of quickbook accounting.
+
+<h3>Inputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Visibility</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Display Name</td>
+        <td>text</td>
+        <td>yes</td>
+        <td></td>
+        <td> Always </td>
+        <td> Name to display for the costumer </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Outputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+### Get All Bills
+
+This step allow you to obtain all the bills from the system of quickbook accounting.
+
+<h3>Outputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 
 </details>
