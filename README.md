@@ -63,9 +63,9 @@ The Javascript API of the quickbooks endpoint has three pieces:
 ## HTTP requests
 You can make `POST`,`GET` requests to the [quickbooks API](https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account) like this:
 ```javascript
-var response = app.endpoints.quickbooks.post('/term', body)
-var response = app.endpoints.quickbooks.post('/term')
-var response = app.endpoints.quickbooks.get('/companyinfo/:companyId')
+var response = app.endpoints.quickbooks.post('/deposit?operation=update', body)
+var response = app.endpoints.quickbooks.post('/deposit?operation=update')
+var response = app.endpoints.quickbooks.get('/customer/:entityId')
 ```
 
 Please take a look at the documentation of the [HTTP endpoint](https://github.com/slingr-stack/http-endpoint#javascript-api)
@@ -576,11 +576,11 @@ app.endpoints.quickbooks.del.vendorcredit.post(body)
 app.endpoints.quickbooks.account.get(entityId)
 ```
 ---
-* API URL: '/query?query=' + query + ''
+* API URL: '/query?query=' + httpOptions.query.query + ''
 * HTTP Method: 'GET'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.query.get(query)
+app.endpoints.quickbooks.query.get()
 ```
 ---
 * API URL: '/attachable/:entityId'
@@ -604,11 +604,11 @@ app.endpoints.quickbooks.bill.get(entityId)
 app.endpoints.quickbooks.billpayment.get(entityId)
 ```
 ---
-* API URL: '/cdc?entities=' + entities + '&changedSince=' + changedSince + ''
+* API URL: '/cdc?entities=' + httpOptions.query.entities + '&changedSince=' + httpOptions.query.changedSince + ''
 * HTTP Method: 'GET'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.cdc.get(entities, changedSince)
+app.endpoints.quickbooks.cdc.get()
 ```
 ---
 * API URL: '/class/:entityId'
@@ -852,7 +852,7 @@ Generic flow step for full use of the entire endpoint and its services.
         <td>
             The url to which this endpoint will send the request. This is the exact service to which the http request will be made. <br>
             Possible values are: <br>
-            <i><strong>/account<br>/account?operation=update<br>/attachable<br>/attachable?operation=update<br>/attachable?operation=delete<br>/batch<br>/bill<br>/bill?operation=update<br>/bill?operation=delete<br>/billpayment<br>/billpayment?operation=update<br>/billpayment?operation=delete<br>/class<br>/class?operation=update<br>/creditmemo<br>/creditmemo?operation=update<br>/creditmemo?operation=delete<br>/customer<br>/customer?operation=update<br>/department<br>/department?operation=update<br>/deposit<br>/deposit?operation=update<br>/deposit?operation=delete<br>/employee<br>/employee?operation=update<br>/estimate<br>/estimate?operation=update<br>/estimate?operation=delete<br>/invoice<br>/invoice?operation=update<br>/invoice?operation=delete<br>/invoice/{entityId}/send<br>/item<br>/item?operation=update<br>/journalentry<br>/journalentry?operation=delete<br>/payment<br>/payment?operation=update<br>/payment?operation=delete<br>/paymentmethod<br>/paymentmethod?operation=update<br>/preferences?operation=update<br>/purchase<br>/purchase?operation=update<br>/purchase?operation=delete<br>/purchaseorder<br>/purchaseorder?operation=update<br>/purchaseorder?operation=delete<br>/refundreceipt<br>/refundreceipt?operation=update<br>/refundreceipt?operation=delete<br>/salesreceipt<br>/salesreceipt?operation=update<br>/salesreceipt?operation=delete<br>/taxagency<br>/taxservice/taxcode<br>/term<br>/term?operation=update<br>/timeactivity<br>/timeactivity?operation=update<br>/timeactivity?operation=delete<br>/transfer<br>/transfer?operation=update<br>/transfer?operation=delete<br>/vendor<br>/vendor?operation=update<br>/vendorcredit<br>/vendorcredit?operation=update<br>/vendorcredit?operation=delete<br>/account/{entityId}<br>/query?query=' + query + '<br>/attachable/{entityId}<br>/bill/{entityId}<br>/billpayment/{entityId}<br>/cdc?entities=' + entities + '&changedSince=' + changedSince + '<br>/class/{entityId}<br>/companyinfo/{companyId}<br>/creditmemo/{entityId}<br>/customer/{entityId}<br>/department/{entityId}<br>/deposit/{entityId}<br>/employee/{entityId}<br>/estimate/{entityId}<br>/invoice/{entityId}<br>/item/{entityId}<br>/journalentry/{entityId}<br>/payment/{entityId}<br>/paymentmethod/{entityId}<br>/preferences<br>/purchase/{entityId}<br>/purchaseorder/{entityId}<br>/refundreceipt/{entityId}<br>/reports/{reportType}<br>/salesreceipt/{entityId}<br>/taxagency/{entityId}<br>/taxcode/{entityId}<br>/taxrate/{entityId}<br>/term/{entityId}<br>/timeactivity/{entityId}<br>/transfer/{entityId}<br>/vendor/{entityId}<br>/vendorcredit/{entityId}<br></strong></i>
+            <i><strong>/account<br>/account?operation=update<br>/attachable<br>/attachable?operation=update<br>/attachable?operation=delete<br>/batch<br>/bill<br>/bill?operation=update<br>/bill?operation=delete<br>/billpayment<br>/billpayment?operation=update<br>/billpayment?operation=delete<br>/class<br>/class?operation=update<br>/creditmemo<br>/creditmemo?operation=update<br>/creditmemo?operation=delete<br>/customer<br>/customer?operation=update<br>/department<br>/department?operation=update<br>/deposit<br>/deposit?operation=update<br>/deposit?operation=delete<br>/employee<br>/employee?operation=update<br>/estimate<br>/estimate?operation=update<br>/estimate?operation=delete<br>/invoice<br>/invoice?operation=update<br>/invoice?operation=delete<br>/invoice/{entityId}/send<br>/item<br>/item?operation=update<br>/journalentry<br>/journalentry?operation=delete<br>/payment<br>/payment?operation=update<br>/payment?operation=delete<br>/paymentmethod<br>/paymentmethod?operation=update<br>/preferences?operation=update<br>/purchase<br>/purchase?operation=update<br>/purchase?operation=delete<br>/purchaseorder<br>/purchaseorder?operation=update<br>/purchaseorder?operation=delete<br>/refundreceipt<br>/refundreceipt?operation=update<br>/refundreceipt?operation=delete<br>/salesreceipt<br>/salesreceipt?operation=update<br>/salesreceipt?operation=delete<br>/taxagency<br>/taxservice/taxcode<br>/term<br>/term?operation=update<br>/timeactivity<br>/timeactivity?operation=update<br>/timeactivity?operation=delete<br>/transfer<br>/transfer?operation=update<br>/transfer?operation=delete<br>/vendor<br>/vendor?operation=update<br>/vendorcredit<br>/vendorcredit?operation=update<br>/vendorcredit?operation=delete<br>/account/{entityId}<br>/query?query=' + httpOptions.query.query + '<br>/attachable/{entityId}<br>/bill/{entityId}<br>/billpayment/{entityId}<br>/cdc?entities=' + httpOptions.query.entities + '&changedSince=' + httpOptions.query.changedSince + '<br>/class/{entityId}<br>/companyinfo/{companyId}<br>/creditmemo/{entityId}<br>/customer/{entityId}<br>/department/{entityId}<br>/deposit/{entityId}<br>/employee/{entityId}<br>/estimate/{entityId}<br>/invoice/{entityId}<br>/item/{entityId}<br>/journalentry/{entityId}<br>/payment/{entityId}<br>/paymentmethod/{entityId}<br>/preferences<br>/purchase/{entityId}<br>/purchaseorder/{entityId}<br>/refundreceipt/{entityId}<br>/reports/{reportType}<br>/salesreceipt/{entityId}<br>/taxagency/{entityId}<br>/taxcode/{entityId}<br>/taxrate/{entityId}<br>/term/{entityId}<br>/timeactivity/{entityId}<br>/transfer/{entityId}<br>/vendor/{entityId}<br>/vendorcredit/{entityId}<br></strong></i>
         </td>
     </tr>
     <tr>

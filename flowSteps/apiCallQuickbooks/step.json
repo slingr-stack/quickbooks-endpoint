@@ -17,16 +17,16 @@
               "label": "POST /account"
             },
             {
-              "label": "POST /account{operation=update}"
+              "label": "POST /account?operation=update"
             },
             {
               "label": "POST /attachable"
             },
             {
-              "label": "POST /attachable{operation=update}"
+              "label": "POST /attachable?operation=update"
             },
             {
-              "label": "POST /attachable{operation=delete}"
+              "label": "POST /attachable?operation=delete"
             },
             {
               "label": "POST /batch"
@@ -35,79 +35,79 @@
               "label": "POST /bill"
             },
             {
-              "label": "POST /bill{operation=update}"
+              "label": "POST /bill?operation=update"
             },
             {
-              "label": "POST /bill{operation=delete}"
+              "label": "POST /bill?operation=delete"
             },
             {
               "label": "POST /billpayment"
             },
             {
-              "label": "POST /billpayment{operation=update}"
+              "label": "POST /billpayment?operation=update"
             },
             {
-              "label": "POST /billpayment{operation=delete}"
+              "label": "POST /billpayment?operation=delete"
             },
             {
               "label": "POST /class"
             },
             {
-              "label": "POST /class{operation=update}"
+              "label": "POST /class?operation=update"
             },
             {
               "label": "POST /creditmemo"
             },
             {
-              "label": "POST /creditmemo{operation=update}"
+              "label": "POST /creditmemo?operation=update"
             },
             {
-              "label": "POST /creditmemo{operation=delete}"
+              "label": "POST /creditmemo?operation=delete"
             },
             {
               "label": "POST /customer"
             },
             {
-              "label": "POST /customer{operation=update}"
+              "label": "POST /customer?operation=update"
             },
             {
               "label": "POST /department"
             },
             {
-              "label": "POST /department{operation=update}"
+              "label": "POST /department?operation=update"
             },
             {
               "label": "POST /deposit"
             },
             {
-              "label": "POST /deposit{operation=update}"
+              "label": "POST /deposit?operation=update"
             },
             {
-              "label": "POST /deposit{operation=delete}"
+              "label": "POST /deposit?operation=delete"
             },
             {
               "label": "POST /employee"
             },
             {
-              "label": "POST /employee{operation=update}"
+              "label": "POST /employee?operation=update"
             },
             {
               "label": "POST /estimate"
             },
             {
-              "label": "POST /estimate{operation=update}"
+              "label": "POST /estimate?operation=update"
             },
             {
-              "label": "POST /estimate{operation=delete}"
+              "label": "POST /estimate?operation=delete"
             },
             {
               "label": "POST /invoice"
             },
             {
-              "label": "POST /invoice{operation=update}"
+              "label": "POST /invoice?operation=update"
             },
             {
-              "label": "POST /invoice{operation=delete}"
+              "label": "POST /invoice?operation=delete"
             },
             {
               "label": "POST /invoice/{entityId}/send"
@@ -116,67 +116,67 @@
               "label": "POST /item"
             },
             {
-              "label": "POST /item{operation=update}"
+              "label": "POST /item?operation=update"
             },
             {
               "label": "POST /journalentry"
             },
             {
-              "label": "POST /journalentry{operation=delete}"
+              "label": "POST /journalentry?operation=delete"
             },
             {
               "label": "POST /payment"
             },
             {
-              "label": "POST /payment{operation=update}"
+              "label": "POST /payment?operation=update"
             },
             {
-              "label": "POST /payment{operation=delete}"
+              "label": "POST /payment?operation=delete"
             },
             {
               "label": "POST /paymentmethod"
             },
             {
-              "label": "POST /paymentmethod{operation=update}"
+              "label": "POST /paymentmethod?operation=update"
             },
             {
-              "label": "POST /preferences{operation=update}"
+              "label": "POST /preferences?operation=update"
             },
             {
               "label": "POST /purchase"
             },
             {
-              "label": "POST /purchase{operation=update}"
+              "label": "POST /purchase?operation=update"
             },
             {
-              "label": "POST /purchase{operation=delete}"
+              "label": "POST /purchase?operation=delete"
             },
             {
               "label": "POST /purchaseorder"
             },
             {
-              "label": "POST /purchaseorder{operation=update}"
+              "label": "POST /purchaseorder?operation=update"
             },
             {
-              "label": "POST /purchaseorder{operation=delete}"
+              "label": "POST /purchaseorder?operation=delete"
             },
             {
               "label": "POST /refundreceipt"
             },
             {
-              "label": "POST /refundreceipt{operation=update}"
+              "label": "POST /refundreceipt?operation=update"
             },
             {
-              "label": "POST /refundreceipt{operation=delete}"
+              "label": "POST /refundreceipt?operation=delete"
             },
             {
               "label": "POST /salesreceipt"
             },
             {
-              "label": "POST /salesreceipt{operation=update}"
+              "label": "POST /salesreceipt?operation=update"
             },
             {
-              "label": "POST /salesreceipt{operation=delete}"
+              "label": "POST /salesreceipt?operation=delete"
             },
             {
               "label": "POST /taxagency"
@@ -188,46 +188,46 @@
               "label": "POST /term"
             },
             {
-              "label": "POST /term{operation=update}"
+              "label": "POST /term?operation=update"
             },
             {
               "label": "POST /timeactivity"
             },
             {
-              "label": "POST /timeactivity{operation=update}"
+              "label": "POST /timeactivity?operation=update"
             },
             {
-              "label": "POST /timeactivity{operation=delete}"
+              "label": "POST /timeactivity?operation=delete"
             },
             {
               "label": "POST /transfer"
             },
             {
-              "label": "POST /transfer{operation=update}"
+              "label": "POST /transfer?operation=update"
             },
             {
-              "label": "POST /transfer{operation=delete}"
+              "label": "POST /transfer?operation=delete"
             },
             {
               "label": "POST /vendor"
             },
             {
-              "label": "POST /vendor{operation=update}"
+              "label": "POST /vendor?operation=update"
             },
             {
               "label": "POST /vendorcredit"
             },
             {
-              "label": "POST /vendorcredit{operation=update}"
+              "label": "POST /vendorcredit?operation=update"
             },
             {
-              "label": "POST /vendorcredit{operation=delete}"
+              "label": "POST /vendorcredit?operation=delete"
             },
             {
               "label": "GET /account/{entityId}"
             },
             {
-              "label": "GET /query{query=' + query + '}"
+              "label": "GET /query"
             },
             {
               "label": "GET /attachable/{entityId}"
@@ -239,7 +239,7 @@
               "label": "GET /billpayment/{entityId}"
             },
             {
-              "label": "GET /cdc{entities=' + entities + '}{changedSince=' + changedSince + '}"
+              "label": "GET /cdc"
             },
             {
               "label": "GET /class/{entityId}"

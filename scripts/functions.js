@@ -193,12 +193,8 @@ endpoint.account.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.query.get = function(query, httpOptions) {
-    if (!query) {
-        sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [query].');
-        return;
-    }
-    var url = parse('/query?query=' + query + '', [query]);
+endpoint.query.get = function(httpOptions) {
+    var url = parse('/query?query=' + httpOptions.query.query == null?  + '');
     sys.logs.debug('[quickbooks] GET from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._get(options);
@@ -307,12 +303,8 @@ endpoint.del.billpayment.post = function(httpOptions) {
     return endpoint._post(options);
 };
 
-endpoint.cdc.get = function(entities, changedSince, httpOptions) {
-    if (!entities || !changedSince) {
-        sys.logs.error('Invalid argument received. This helper should receive the following parameters as non-empty strings: [entities,changedSince].');
-        return;
-    }
-    var url = parse('/cdc?entities=' + entities + '&changedSince=' + changedSince + '', [entities, changedSince]);
+endpoint.cdc.get = function(httpOptions) {
+    var url = parse('/cdc?entities=' + httpOptions.query.entities + '&changedSince=' + httpOptions.query.changedSince + '');
     sys.logs.debug('[quickbooks] GET from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._get(options);
