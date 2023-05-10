@@ -1,0 +1,15 @@
+{
+	"label": "Get all Bills with quickbooks",
+	"name": "getAllBillsQuickbooks",
+	"category": "integrations",
+	"description": "This flow step will obtain all bills with the quickbooks endpoint",
+	"inputs": [],
+	"outputs": [
+		{
+			"label": "Response",
+			"name": "response",
+			"type": "object",
+			"description": "The response to external URL"
+		}
+	]
+}

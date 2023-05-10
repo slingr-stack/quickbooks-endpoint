@@ -41,6 +41,12 @@
   "scripts": [
     "functions.js"
   ],
+  "flowSteps": [
+    "apiCallQuickbooks",
+    "createAccountQuickbooks",
+    "getAllBillsQuickbooks",
+    "createCustomerQuickbooks"
+  ],
   "configuration": [
     {
       "name": "clientId",

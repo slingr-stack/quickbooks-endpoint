@@ -1,0 +1,58 @@
+{
+	"label": "Create an account with quickbooks",
+	"name": "createAccountQuickbooks",
+	"category": "integrations",
+	"description": "This flow step will create an account with the quickbooks endpoint",
+	"inputs": [
+		{
+			"label": "Name",
+			"name": "name",
+			"description": "Name for the account",
+			"type": "text",
+			"required": "true",
+			"options": {
+				"allowContextSelector": "false"
+			}
+		},
+        {
+            "label": "Account Type",
+            "name": "accountType",
+            "required": "true",
+            "type": "dropDown",
+	        "multiplicity": "one",
+	        "options": {
+		        "possibleValues": [
+			        {
+				        "label": "Bank",
+				        "name": "Bank"
+			        },
+			        {
+				        "label": "Other Current Asset",
+				        "name": "Other Current Asset"
+			        },
+			        {
+				        "label": "Fixed Asset",
+				        "name": "Fixed Asset"
+			        },
+			        {
+				        "label": "Other Asset",
+				        "name": "Other Asset"
+			        },
+			        {
+				        "label": "Accounts Receivable",
+				        "name": "Accounts Receivable"
+			        }
+		        ],
+		        "allowContextSelector": "false"
+	        }
+        }
+    ],
+	"outputs": [
+		{
+			"label": "Response",
+			"name": "response",
+			"type": "object",
+			"description": "The response to external URL"
+		}
+	]
+}

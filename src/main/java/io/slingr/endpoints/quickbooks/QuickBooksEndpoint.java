@@ -24,8 +24,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * QuickBooks endpoint
@@ -107,9 +105,6 @@ public class QuickBooksEndpoint extends HttpEndpoint {
         }
         httpService().setupBearerAuthenticationHeader(this.accessToken);
         httpService().setupDefaultHeader("Accept", "application/json");
-
-        final long TOKEN_REFRESH_POLLING_TIME = TimeUnit.MINUTES.toMillis(50);
-        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(this::refreshQuickBooksToken, TOKEN_REFRESH_POLLING_TIME, TOKEN_REFRESH_POLLING_TIME, TimeUnit.MILLISECONDS);
     }
 
     @EndpointFunction(name = "_get")
