@@ -16,7 +16,7 @@
     "allowMultipleInstances": false
   },
   "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/quickbooks.png",
-  "configurationHelpUrl": "/endpoints_quickbooks.html#configuration",
+  "configurationHelpUrl": "/endpoints-quickbooks.html#configuration",
   "status": "ACTIVE",
   "stores": [
     {"name": "tokens"}
@@ -36,19 +36,16 @@
     {
       "label": "POST",
       "name": "_post"
-    },
-    {
-      "label": "Convert date to time",
-      "name": "_convertDateToTimestamp"
-    },
-    {
-      "label": "Format from milliseconds",
-      "name": "_formatFromMillis"
     }
   ],
   "scripts": [
-    "quickbooks-fn-helpers.js",
     "functions.js"
+  ],
+  "flowSteps": [
+    "apiCallQuickbooks",
+    "createAccountQuickbooks",
+    "getAllBillsQuickbooks",
+    "createCustomerQuickbooks"
   ],
   "configuration": [
     {
@@ -56,12 +53,14 @@
       "label": "Client ID",
       "type": "text",
       "required": true
-    },{
+    },
+    {
       "name": "clientSecret",
       "label": "Client Secret",
       "type": "text",
       "required": true
-    },{
+    },
+    {
       "name": "companyId",
       "label": "Company ID",
       "type": "text",

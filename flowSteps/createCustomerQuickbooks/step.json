@@ -1,0 +1,26 @@
+{
+	"label": "Create a Costumer with quickbooks",
+	"name": "createCustomerQuickbooks",
+	"category": "integrations",
+	"description": "This flow step will create a costumer with the quickbooks endpoint",
+	"inputs": [
+		{
+			"label": "Display Name",
+			"name": "name",
+			"description": "Name to display for the costumer",
+			"type": "text",
+			"required": "true",
+			"options": {
+				"allowContextSelector": "true"
+			}
+		}
+    ],
+	"outputs": [
+		{
+			"label": "Response",
+			"name": "response",
+			"type": "object",
+			"description": "The response to external URL"
+		}
+	]
+}

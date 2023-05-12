@@ -1,0 +1,1041 @@
+{
+  "fileName": "functions",
+  "endpointName": "quickbooks",
+  "apiDescriptors": [
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/account",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/account?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/account/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/query",
+      "queryParams": [
+        "query"
+      ],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/attachable",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/attachable/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/attachable?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/attachable?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/batch",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/bill",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/bill/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/bill?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/bill?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/billpayment",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/billpayment/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/billpayment?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/billpayment?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/cdc",
+      "queryParams": [
+        "entities",
+        "changedSince"
+      ],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/class",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/class/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/class?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/companyinfo/:companyId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/creditmemo",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/creditmemo/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/creditmemo?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/creditmemo?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/customer",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/customer/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/customer?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/department",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/department/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/department?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/deposit",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/deposit/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/deposit?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/deposit?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/employee",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/employee/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/employee?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/estimate",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/estimate/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/estimate?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/estimate?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/invoice",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/invoice/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/invoice?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/invoice?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/invoice/:entityId/send",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/item",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/item/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/item?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/journalentry",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/journalentry/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/journalentry?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payment",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/payment/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payment?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/payment?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/paymentmethod",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/paymentmethod/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/paymentmethod?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/preferences",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/preferences?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/purchase",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/purchase/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/purchase?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/purchase?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/purchaseorder",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/purchaseorder/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/purchaseorder?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/purchaseorder?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/refundreceipt",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/refundreceipt/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/refundreceipt?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/refundreceipt?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/reports/:reportType",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/salesreceipt",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/salesreceipt/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/salesreceipt?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/salesreceipt?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/taxagency",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/taxagency/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/taxcode/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/taxrate/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/taxservice/taxcode",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/term",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/term/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/term?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/timeactivity",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/timeactivity/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/timeactivity?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/timeactivity?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/transfer",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/transfer/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/transfer?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/transfer?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/vendor",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/vendor/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/vendor?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "POST",
+      "url": "/vendorcredit",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "",
+      "suffix": "",
+      "method": "GET",
+      "url": "/vendorcredit/:entityId",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "update",
+      "suffix": "",
+      "method": "POST",
+      "url": "/vendorcredit?operation=update",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    },
+    {
+      "prefix": "del",
+      "suffix": "",
+      "method": "POST",
+      "url": "/vendorcredit?operation=delete",
+      "queryParams": [],
+      "docsLinks": [
+        "https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account"
+      ]
+    }
+  ]
+}

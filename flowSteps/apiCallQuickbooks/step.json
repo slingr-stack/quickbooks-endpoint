@@ -1,0 +1,445 @@
+{
+  "label": "API call to quickbooks",
+  "name": "apiCallQuickbooks",
+  "category": "integrations",
+  "description": "This flow step will send generic request to quickbooks",
+  "inputs": [
+    {
+      "label": "Url",
+      "name": "url",
+      "description": "The method and path to which this endpoint is to send requests in a generic way.",
+      "type": "urlParams",
+      "required": "true",
+      "options": {
+        "type": "dropDown",
+        "possibleValues": [
+            {
+              "label": "POST /account"
+            },
+            {
+              "label": "POST /account?operation=update"
+            },
+            {
+              "label": "POST /attachable"
+            },
+            {
+              "label": "POST /attachable?operation=update"
+            },
+            {
+              "label": "POST /attachable?operation=delete"
+            },
+            {
+              "label": "POST /batch"
+            },
+            {
+              "label": "POST /bill"
+            },
+            {
+              "label": "POST /bill?operation=update"
+            },
+            {
+              "label": "POST /bill?operation=delete"
+            },
+            {
+              "label": "POST /billpayment"
+            },
+            {
+              "label": "POST /billpayment?operation=update"
+            },
+            {
+              "label": "POST /billpayment?operation=delete"
+            },
+            {
+              "label": "POST /class"
+            },
+            {
+              "label": "POST /class?operation=update"
+            },
+            {
+              "label": "POST /creditmemo"
+            },
+            {
+              "label": "POST /creditmemo?operation=update"
+            },
+            {
+              "label": "POST /creditmemo?operation=delete"
+            },
+            {
+              "label": "POST /customer"
+            },
+            {
+              "label": "POST /customer?operation=update"
+            },
+            {
+              "label": "POST /department"
+            },
+            {
+              "label": "POST /department?operation=update"
+            },
+            {
+              "label": "POST /deposit"
+            },
+            {
+              "label": "POST /deposit?operation=update"
+            },
+            {
+              "label": "POST /deposit?operation=delete"
+            },
+            {
+              "label": "POST /employee"
+            },
+            {
+              "label": "POST /employee?operation=update"
+            },
+            {
+              "label": "POST /estimate"
+            },
+            {
+              "label": "POST /estimate?operation=update"
+            },
+            {
+              "label": "POST /estimate?operation=delete"
+            },
+            {
+              "label": "POST /invoice"
+            },
+            {
+              "label": "POST /invoice?operation=update"
+            },
+            {
+              "label": "POST /invoice?operation=delete"
+            },
+            {
+              "label": "POST /invoice/{entityId}/send"
+            },
+            {
+              "label": "POST /item"
+            },
+            {
+              "label": "POST /item?operation=update"
+            },
+            {
+              "label": "POST /journalentry"
+            },
+            {
+              "label": "POST /journalentry?operation=delete"
+            },
+            {
+              "label": "POST /payment"
+            },
+            {
+              "label": "POST /payment?operation=update"
+            },
+            {
+              "label": "POST /payment?operation=delete"
+            },
+            {
+              "label": "POST /paymentmethod"
+            },
+            {
+              "label": "POST /paymentmethod?operation=update"
+            },
+            {
+              "label": "POST /preferences?operation=update"
+            },
+            {
+              "label": "POST /purchase"
+            },
+            {
+              "label": "POST /purchase?operation=update"
+            },
+            {
+              "label": "POST /purchase?operation=delete"
+            },
+            {
+              "label": "POST /purchaseorder"
+            },
+            {
+              "label": "POST /purchaseorder?operation=update"
+            },
+            {
+              "label": "POST /purchaseorder?operation=delete"
+            },
+            {
+              "label": "POST /refundreceipt"
+            },
+            {
+              "label": "POST /refundreceipt?operation=update"
+            },
+            {
+              "label": "POST /refundreceipt?operation=delete"
+            },
+            {
+              "label": "POST /salesreceipt"
+            },
+            {
+              "label": "POST /salesreceipt?operation=update"
+            },
+            {
+              "label": "POST /salesreceipt?operation=delete"
+            },
+            {
+              "label": "POST /taxagency"
+            },
+            {
+              "label": "POST /taxservice/taxcode"
+            },
+            {
+              "label": "POST /term"
+            },
+            {
+              "label": "POST /term?operation=update"
+            },
+            {
+              "label": "POST /timeactivity"
+            },
+            {
+              "label": "POST /timeactivity?operation=update"
+            },
+            {
+              "label": "POST /timeactivity?operation=delete"
+            },
+            {
+              "label": "POST /transfer"
+            },
+            {
+              "label": "POST /transfer?operation=update"
+            },
+            {
+              "label": "POST /transfer?operation=delete"
+            },
+            {
+              "label": "POST /vendor"
+            },
+            {
+              "label": "POST /vendor?operation=update"
+            },
+            {
+              "label": "POST /vendorcredit"
+            },
+            {
+              "label": "POST /vendorcredit?operation=update"
+            },
+            {
+              "label": "POST /vendorcredit?operation=delete"
+            },
+            {
+              "label": "GET /account/{entityId}"
+            },
+            {
+              "label": "GET /query"
+            },
+            {
+              "label": "GET /attachable/{entityId}"
+            },
+            {
+              "label": "GET /bill/{entityId}"
+            },
+            {
+              "label": "GET /billpayment/{entityId}"
+            },
+            {
+              "label": "GET /cdc"
+            },
+            {
+              "label": "GET /class/{entityId}"
+            },
+            {
+              "label": "GET /companyinfo/{companyId}"
+            },
+            {
+              "label": "GET /creditmemo/{entityId}"
+            },
+            {
+              "label": "GET /customer/{entityId}"
+            },
+            {
+              "label": "GET /department/{entityId}"
+            },
+            {
+              "label": "GET /deposit/{entityId}"
+            },
+            {
+              "label": "GET /employee/{entityId}"
+            },
+            {
+              "label": "GET /estimate/{entityId}"
+            },
+            {
+              "label": "GET /invoice/{entityId}"
+            },
+            {
+              "label": "GET /item/{entityId}"
+            },
+            {
+              "label": "GET /journalentry/{entityId}"
+            },
+            {
+              "label": "GET /payment/{entityId}"
+            },
+            {
+              "label": "GET /paymentmethod/{entityId}"
+            },
+            {
+              "label": "GET /preferences"
+            },
+            {
+              "label": "GET /purchase/{entityId}"
+            },
+            {
+              "label": "GET /purchaseorder/{entityId}"
+            },
+            {
+              "label": "GET /refundreceipt/{entityId}"
+            },
+            {
+              "label": "GET /reports/{reportType}"
+            },
+            {
+              "label": "GET /salesreceipt/{entityId}"
+            },
+            {
+              "label": "GET /taxagency/{entityId}"
+            },
+            {
+              "label": "GET /taxcode/{entityId}"
+            },
+            {
+              "label": "GET /taxrate/{entityId}"
+            },
+            {
+              "label": "GET /term/{entityId}"
+            },
+            {
+              "label": "GET /timeactivity/{entityId}"
+            },
+            {
+              "label": "GET /transfer/{entityId}"
+            },
+            {
+              "label": "GET /vendor/{entityId}"
+            },
+            {
+              "label": "GET /vendorcredit/{entityId}"
+            }
+        ]
+      }
+    },
+    {
+      "label": "Headers",
+      "name": "headers",
+      "description": "Let the client and the server pass additional information with the HTTP request in a key value format. (e.g. key=ABC123)",
+      "type": "keyValue"
+    },
+    {
+      "label": "Query Params",
+      "name": "params",
+      "description": "Parameters attached to the end of a url in a key value format. (e.g. key=ABC123)",
+      "type": "keyValue"
+    },
+    {
+      "label": "Body",
+      "name": "body",
+      "type": "json",
+      "description": "Content to be sent to the server.",
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Override Settings",
+      "name": "overrideSettings",
+      "type": "boolean",
+      "description": "If true, allows adding configurations",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Follow Redirects",
+      "name": "followRedirects",
+      "type": "boolean",
+      "description": "Follow the redirects when a HTTP request is executed",
+      "visibility": "config.overrideSettings",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Download",
+      "name": "download",
+      "type": "boolean",
+      "description": "Indicates that the resource has to be downloaded into a file instead of returning it in the response.",
+      "visibility": "config.overrideSettings && config.events != \"fileDownloaded\"",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "File Name",
+      "name": "fileName",
+      "description": "If provided, the file will be stored with this name. If empty the file name will be calculated from the URL.",
+      "visibility": "(config.overrideSettings && config.download) || config.events === \"fileDownloaded\"",
+      "type": "text",
+      "options": {
+        "allowContextSelector": "true"
+      }
+    },
+    {
+      "label": "Full Response",
+      "name": "fullResponse",
+      "type": "boolean",
+      "description": "Include extended information about response",
+      "visibility": "config.overrideSettings",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Connection timeout",
+      "name": "connectionTimeout",
+      "description": "Connect timeout interval, in milliseconds (0 = infinity). Default value: 5000 ms (5 sec)",
+      "visibility": "config.overrideSettings",
+      "type": "text",
+      "defaultValue": "5000",
+      "typeOptions": {
+        "validation": {
+          "function": "!config.connectionTimeout || utils.isPlaceholder(config.connectionTimeout) || utils.getInteger(config.connectionTimeout) >= 0",
+          "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+        }
+      },
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Read timeout",
+      "name": "readTimeout",
+      "description": "Read timeout interval, in milliseconds (0 = infinity). Default value: 60000 ms (60 sec)",
+      "visibility": "config.overrideSettings",
+      "type": "text",
+      "defaultValue": "60000",
+      "typeOptions": {
+        "validation": {
+          "function": "!config.readTimeout || utils.isPlaceholder(config.readTimeout) || utils.getInteger(config.readTimeout) >= 0",
+          "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+        }
+      },
+      "options": {
+        "allowContextSelector": "false"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "label": "Response",
+      "name": "response",
+      "type": "object",
+      "description": "The response to external URL"
+    }
+  ]
+}

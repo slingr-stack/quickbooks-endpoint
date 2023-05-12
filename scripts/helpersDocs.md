@@ -1,57 +1,3 @@
----
-title: QuickBooks endpoint
-keywords: 
-last_updated: May 10, 2023
-tags: []
-summary: "Detailed description of the API of the QuickBooks endpoint."
----
-
-## Overview
-
-The QuickBooks endpoint allows you to interact with the QuickBooks Account API.
-
-Some futures are:
-
-- Shortcuts for the REST API
-- Helpers to convert date times
-
-Apart from helpers you will see that in order to use the REST API of QuickBooks you will be making
-regular HTTP request to the REST API. For example:
-
-```js
-var res = app.endpoints.quickbooks.get('/account/1');
-```
-
-In most cases the provided helpers and events are enough, but if you need to
-use the QuickBooks REST API you should go to their documentation for [API explorer](https://developer.intuit.com/app/developer/qbo/docs/api/accounting/most-commonly-used/account).
-
-## Configuration
-
-To obtain the requested fields for configuration you need to log in to your intuit developer account and go to
- [Test connect to app (OAuth)](https://developer.intuit.com/v2/ui#/playground). On this page you need to:
-
- - Complete the form selecting the app you want to configure on the endpoint.
-
- - Once you select the app the Client ID and Client Secret fields are being populated. You can copy this values to the endpoint configuration.
-
- - Select the Scopes (Accounting is the only available for now).
-
- - Click on Get authorization code and authorize the app.
-
- - Then click on Get Tokens button.
-
- - Once you have the Tokens you can start making calls to the API. On this screen you need to access to the step 4 and copy
- the Access Token, the Refresh Token and Minor Version to the endpoint configuration. QuickBooks Online data services support 
- minor versions in order to provide a way for you to access incremental changes without breaking existing apps.
-
-## Webhooks
-
- In order to use API Web-hooks you need to copy the generated `Webhook URL` to the QuickBooks webhooks app
- configuration. For now, the only supported events are the ones for Account.
-
- To verify Webhooks request to your endpoint you need to configure the `Webhooks Verifier Token` to make your endpoint
- more secure. This is recommended although is not required. You can find more information about [QuickBooks Webhooks here](https://developer.intuit.com/app/developer/qbo/docs/develop/webhooks)
-
 # Javascript API
 
 The Javascript API of the quickbooks endpoint has three pieces:
@@ -61,7 +7,7 @@ The Javascript API of the quickbooks endpoint has three pieces:
 - **Additional Helpers**: These helpers provide additional features that facilitate or improves the endpoint usage in SLINGR.
 
 ## HTTP requests
-You can make `POST`,`GET` requests to the [quickbooks API](https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account) like this:
+You can make `POST`,`GET` requests to the [quickbooks API](API_URL_HERE) like this:
 ```javascript
 var response = app.endpoints.quickbooks.post('/deposit?operation=update', body)
 var response = app.endpoints.quickbooks.post('/deposit?operation=update')
@@ -802,10 +748,10 @@ app.endpoints.quickbooks.vendorcredit.get(entityId)
 ---
 
 </details>
-
+    
 ## Flow Step
 
-As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint:
+As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint: 
 <details>
     <summary>Click here to see the Flow Steps</summary>
 
@@ -980,159 +926,14 @@ For more information about how shortcuts or flow steps works, and how they are g
 
 
 
-### Create Account
+### Custom Flow Steps Name
 
-This step allow you to create a new account in the system of quickbook accounting.
+Description of Custom Flow Steps
 
-<h3>Inputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Label</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Default</th>
-        <th>Visibility</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Name</td>
-        <td>text</td>
-        <td>yes</td>
-        <td></td>
-        <td> Allways </td>
-        <td> Name for the account </td>
-    </tr>
-    <tr>
-        <td>Account Type</td>
-        <td>choice</td>
-        <td>yes</td>
-        <td> - </td>
-        <td>Always</td>
-        <td>
-            This is the Account Type required by Quickbook. <br>
-            Possible values are: <br>
-            <i><strong>Bank, Other Current Asset, Fixed Asset, Other Asset, Accounts Receivable</strong></i>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-
-
-### Create Costumer
-
-This step allow you to create a new costumer in the system of quickbook accounting.
-
-<h3>Inputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Label</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Default</th>
-        <th>Visibility</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Display Name</td>
-        <td>text</td>
-        <td>yes</td>
-        <td></td>
-        <td> Always </td>
-        <td> Name to display for the costumer </td>
-    </tr>
-    </tbody>
-</table>
-
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-
-
-### Get All Bills
-
-This step allow you to obtain all the bills from the system of quickbook accounting.
-
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
+*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
 
 
 </details>
 
 ## Additional Helpers
 *MANUALLY ADD THE DOCUMENTATION OF THESE HELPERS HERE...*
-
-## About SLINGR
-
-SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
-
-[More info about SLINGR](https://slingr.io)
-
-## License
-
-This endpoint is licensed under the Apache License 2.0. See the `LICENSE` file for more details.
