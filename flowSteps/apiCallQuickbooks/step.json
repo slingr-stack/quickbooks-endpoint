@@ -343,7 +343,7 @@
       "type": "json",
       "description": "Content to be sent to the server.",
       "options": {
-        "allowContextSelector": "false"
+        "allowContextSelector": "true"
       }
     },
     {

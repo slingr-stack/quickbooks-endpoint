@@ -3,8 +3,8 @@
   "endpointName": "quickbooks",
   "apiDescriptors": [
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/account",
       "queryParams": [],
@@ -13,8 +13,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/account?operation=update",
       "queryParams": [],
@@ -23,8 +23,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/account/:entityId",
       "queryParams": [],
@@ -33,8 +33,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/query",
       "queryParams": [
@@ -45,8 +45,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/attachable",
       "queryParams": [],
@@ -55,8 +55,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/attachable/:entityId",
       "queryParams": [],
@@ -65,8 +65,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/attachable?operation=update",
       "queryParams": [],
@@ -75,8 +75,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/attachable?operation=delete",
       "queryParams": [],
@@ -85,8 +85,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/batch",
       "queryParams": [],
@@ -95,8 +95,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/bill",
       "queryParams": [],
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/bill/:entityId",
       "queryParams": [],
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/bill?operation=update",
       "queryParams": [],
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/bill?operation=delete",
       "queryParams": [],
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/billpayment",
       "queryParams": [],
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/billpayment/:entityId",
       "queryParams": [],
@@ -155,8 +155,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/billpayment?operation=update",
       "queryParams": [],
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/billpayment?operation=delete",
       "queryParams": [],
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/cdc",
       "queryParams": [
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/class",
       "queryParams": [],
@@ -198,8 +198,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/class/:entityId",
       "queryParams": [],
@@ -208,8 +208,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/class?operation=update",
       "queryParams": [],
@@ -218,8 +218,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/companyinfo/:companyId",
       "queryParams": [],
@@ -228,8 +228,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/creditmemo",
       "queryParams": [],
@@ -238,8 +238,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/creditmemo/:entityId",
       "queryParams": [],
@@ -248,8 +248,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/creditmemo?operation=update",
       "queryParams": [],
@@ -258,8 +258,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/creditmemo?operation=delete",
       "queryParams": [],
@@ -268,8 +268,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/customer",
       "queryParams": [],
@@ -278,8 +278,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/customer/:entityId",
       "queryParams": [],
@@ -288,8 +288,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/customer?operation=update",
       "queryParams": [],
@@ -298,8 +298,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/department",
       "queryParams": [],
@@ -308,8 +308,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/department/:entityId",
       "queryParams": [],
@@ -318,8 +318,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/department?operation=update",
       "queryParams": [],
@@ -328,8 +328,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/deposit",
       "queryParams": [],
@@ -338,8 +338,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/deposit/:entityId",
       "queryParams": [],
@@ -348,8 +348,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/deposit?operation=update",
       "queryParams": [],
@@ -358,8 +358,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/deposit?operation=delete",
       "queryParams": [],
@@ -368,8 +368,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/employee",
       "queryParams": [],
@@ -378,8 +378,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/employee/:entityId",
       "queryParams": [],
@@ -388,8 +388,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/employee?operation=update",
       "queryParams": [],
@@ -398,8 +398,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/estimate",
       "queryParams": [],
@@ -408,8 +408,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/estimate/:entityId",
       "queryParams": [],
@@ -418,8 +418,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/estimate?operation=update",
       "queryParams": [],
@@ -428,8 +428,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/estimate?operation=delete",
       "queryParams": [],
@@ -438,8 +438,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/invoice",
       "queryParams": [],
@@ -448,8 +448,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/invoice/:entityId",
       "queryParams": [],
@@ -458,8 +458,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/invoice?operation=update",
       "queryParams": [],
@@ -468,8 +468,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/invoice?operation=delete",
       "queryParams": [],
@@ -478,8 +478,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/invoice/:entityId/send",
       "queryParams": [],
@@ -488,8 +488,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/item",
       "queryParams": [],
@@ -498,8 +498,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/item/:entityId",
       "queryParams": [],
@@ -508,8 +508,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/item?operation=update",
       "queryParams": [],
@@ -518,8 +518,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/journalentry",
       "queryParams": [],
@@ -528,8 +528,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/journalentry/:entityId",
       "queryParams": [],
@@ -538,8 +538,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/journalentry?operation=delete",
       "queryParams": [],
@@ -548,8 +548,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/payment",
       "queryParams": [],
@@ -558,8 +558,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/payment/:entityId",
       "queryParams": [],
@@ -568,8 +568,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/payment?operation=update",
       "queryParams": [],
@@ -578,8 +578,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/payment?operation=delete",
       "queryParams": [],
@@ -588,8 +588,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/paymentmethod",
       "queryParams": [],
@@ -598,8 +598,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/paymentmethod/:entityId",
       "queryParams": [],
@@ -608,8 +608,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/paymentmethod?operation=update",
       "queryParams": [],
@@ -618,8 +618,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/preferences",
       "queryParams": [],
@@ -628,8 +628,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/preferences?operation=update",
       "queryParams": [],
@@ -638,8 +638,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/purchase",
       "queryParams": [],
@@ -648,8 +648,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/purchase/:entityId",
       "queryParams": [],
@@ -658,8 +658,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/purchase?operation=update",
       "queryParams": [],
@@ -668,8 +668,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/purchase?operation=delete",
       "queryParams": [],
@@ -678,8 +678,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/purchaseorder",
       "queryParams": [],
@@ -688,8 +688,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/purchaseorder/:entityId",
       "queryParams": [],
@@ -698,8 +698,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/purchaseorder?operation=update",
       "queryParams": [],
@@ -708,8 +708,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/purchaseorder?operation=delete",
       "queryParams": [],
@@ -718,8 +718,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/refundreceipt",
       "queryParams": [],
@@ -728,8 +728,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/refundreceipt/:entityId",
       "queryParams": [],
@@ -738,8 +738,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/refundreceipt?operation=update",
       "queryParams": [],
@@ -748,8 +748,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/refundreceipt?operation=delete",
       "queryParams": [],
@@ -758,8 +758,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/reports/:reportType",
       "queryParams": [],
@@ -768,8 +768,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/salesreceipt",
       "queryParams": [],
@@ -778,8 +778,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/salesreceipt/:entityId",
       "queryParams": [],
@@ -788,8 +788,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/salesreceipt?operation=update",
       "queryParams": [],
@@ -798,8 +798,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/salesreceipt?operation=delete",
       "queryParams": [],
@@ -808,8 +808,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/taxagency",
       "queryParams": [],
@@ -818,8 +818,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/taxagency/:entityId",
       "queryParams": [],
@@ -828,8 +828,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/taxcode/:entityId",
       "queryParams": [],
@@ -838,8 +838,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/taxrate/:entityId",
       "queryParams": [],
@@ -848,8 +848,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/taxservice/taxcode",
       "queryParams": [],
@@ -858,8 +858,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/term",
       "queryParams": [],
@@ -868,8 +868,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/term/:entityId",
       "queryParams": [],
@@ -878,8 +878,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/term?operation=update",
       "queryParams": [],
@@ -888,8 +888,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/timeactivity",
       "queryParams": [],
@@ -898,8 +898,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/timeactivity/:entityId",
       "queryParams": [],
@@ -908,8 +908,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/timeactivity?operation=update",
       "queryParams": [],
@@ -918,8 +918,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/timeactivity?operation=delete",
       "queryParams": [],
@@ -928,8 +928,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/transfer",
       "queryParams": [],
@@ -938,8 +938,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/transfer/:entityId",
       "queryParams": [],
@@ -948,8 +948,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/transfer?operation=update",
       "queryParams": [],
@@ -958,8 +958,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/transfer?operation=delete",
       "queryParams": [],
@@ -968,8 +968,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/vendor",
       "queryParams": [],
@@ -978,8 +978,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/vendor/:entityId",
       "queryParams": [],
@@ -988,8 +988,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/vendor?operation=update",
       "queryParams": [],
@@ -998,8 +998,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "POST",
       "url": "/vendorcredit",
       "queryParams": [],
@@ -1008,8 +1008,8 @@
       ]
     },
     {
-      "prefix": "",
       "suffix": "",
+      "prefix": "",
       "method": "GET",
       "url": "/vendorcredit/:entityId",
       "queryParams": [],
@@ -1018,8 +1018,8 @@
       ]
     },
     {
-      "prefix": "update",
-      "suffix": "",
+      "suffix": "update",
+      "prefix": "",
       "method": "POST",
       "url": "/vendorcredit?operation=update",
       "queryParams": [],
@@ -1028,8 +1028,8 @@
       ]
     },
     {
-      "prefix": "del",
-      "suffix": "",
+      "suffix": "del",
+      "prefix": "",
       "method": "POST",
       "url": "/vendorcredit?operation=delete",
       "queryParams": [],

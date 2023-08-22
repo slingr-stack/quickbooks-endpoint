@@ -10,127 +10,123 @@
 
 endpoint.account = {};
 
-endpoint.update = {};
-
-endpoint.update.account = {};
+endpoint.account.update = {};
 
 endpoint.query = {};
 
 endpoint.attachable = {};
 
-endpoint.update.attachable = {};
+endpoint.attachable.update = {};
 
-endpoint.del = {};
-
-endpoint.del.attachable = {};
+endpoint.attachable.del = {};
 
 endpoint.batch = {};
 
 endpoint.bill = {};
 
-endpoint.update.bill = {};
+endpoint.bill.update = {};
 
-endpoint.del.bill = {};
+endpoint.bill.del = {};
 
 endpoint.billpayment = {};
 
-endpoint.update.billpayment = {};
+endpoint.billpayment.update = {};
 
-endpoint.del.billpayment = {};
+endpoint.billpayment.del = {};
 
 endpoint.cdc = {};
 
 endpoint.class = {};
 
-endpoint.update.class = {};
+endpoint.class.update = {};
 
 endpoint.companyinfo = {};
 
 endpoint.creditmemo = {};
 
-endpoint.update.creditmemo = {};
+endpoint.creditmemo.update = {};
 
-endpoint.del.creditmemo = {};
+endpoint.creditmemo.del = {};
 
 endpoint.customer = {};
 
-endpoint.update.customer = {};
+endpoint.customer.update = {};
 
 endpoint.department = {};
 
-endpoint.update.department = {};
+endpoint.department.update = {};
 
 endpoint.deposit = {};
 
-endpoint.update.deposit = {};
+endpoint.deposit.update = {};
 
-endpoint.del.deposit = {};
+endpoint.deposit.del = {};
 
 endpoint.employee = {};
 
-endpoint.update.employee = {};
+endpoint.employee.update = {};
 
 endpoint.estimate = {};
 
-endpoint.update.estimate = {};
+endpoint.estimate.update = {};
 
-endpoint.del.estimate = {};
+endpoint.estimate.del = {};
 
 endpoint.invoice = {};
 
-endpoint.update.invoice = {};
+endpoint.invoice.update = {};
 
-endpoint.del.invoice = {};
+endpoint.invoice.del = {};
 
 endpoint.invoice.send = {};
 
 endpoint.item = {};
 
-endpoint.update.item = {};
+endpoint.item.update = {};
 
 endpoint.journalentry = {};
 
-endpoint.del.journalentry = {};
+endpoint.journalentry.del = {};
 
 endpoint.payment = {};
 
-endpoint.update.payment = {};
+endpoint.payment.update = {};
 
-endpoint.del.payment = {};
+endpoint.payment.del = {};
 
 endpoint.paymentmethod = {};
 
-endpoint.update.paymentmethod = {};
+endpoint.paymentmethod.update = {};
 
 endpoint.preferences = {};
 
-endpoint.update.preferences = {};
+endpoint.preferences.update = {};
 
 endpoint.purchase = {};
 
-endpoint.update.purchase = {};
+endpoint.purchase.update = {};
 
-endpoint.del.purchase = {};
+endpoint.purchase.del = {};
 
 endpoint.purchaseorder = {};
 
-endpoint.update.purchaseorder = {};
+endpoint.purchaseorder.update = {};
 
-endpoint.del.purchaseorder = {};
+endpoint.purchaseorder.del = {};
 
 endpoint.refundreceipt = {};
 
-endpoint.update.refundreceipt = {};
+endpoint.refundreceipt.update = {};
 
-endpoint.del.refundreceipt = {};
+endpoint.refundreceipt.del = {};
 
 endpoint.reports = {};
 
 endpoint.salesreceipt = {};
 
-endpoint.update.salesreceipt = {};
+endpoint.salesreceipt.update = {};
 
-endpoint.del.salesreceipt = {};
+endpoint.salesreceipt.del = {};
 
 endpoint.taxagency = {};
 
@@ -144,29 +140,29 @@ endpoint.taxservice.taxcode = {};
 
 endpoint.term = {};
 
-endpoint.update.term = {};
+endpoint.term.update = {};
 
 endpoint.timeactivity = {};
 
-endpoint.update.timeactivity = {};
+endpoint.timeactivity.update = {};
 
-endpoint.del.timeactivity = {};
+endpoint.timeactivity.del = {};
 
 endpoint.transfer = {};
 
-endpoint.update.transfer = {};
+endpoint.transfer.update = {};
 
-endpoint.del.transfer = {};
+endpoint.transfer.del = {};
 
 endpoint.vendor = {};
 
-endpoint.update.vendor = {};
+endpoint.vendor.update = {};
 
 endpoint.vendorcredit = {};
 
-endpoint.update.vendorcredit = {};
+endpoint.vendorcredit.update = {};
 
-endpoint.del.vendorcredit = {};
+endpoint.vendorcredit.del = {};
 
 endpoint.account.post = function(httpOptions) {
     var url = parse('/account');
@@ -175,7 +171,7 @@ endpoint.account.post = function(httpOptions) {
     return endpoint._post(options);
 };
 
-endpoint.update.account.post = function(httpOptions) {
+endpoint.account.update.post = function(httpOptions) {
     var url = parse('/account?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -194,7 +190,7 @@ endpoint.account.get = function(entityId, httpOptions) {
 };
 
 endpoint.query.get = function(httpOptions) {
-    var url = parse('/query?query=' + httpOptions.query.query == null?  + '');
+    var url = parse('/query?query=' + httpOptions.query.query + '');
     sys.logs.debug('[quickbooks] GET from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._get(options);
@@ -218,14 +214,14 @@ endpoint.attachable.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.attachable.post = function(httpOptions) {
+endpoint.attachable.update.post = function(httpOptions) {
     var url = parse('/attachable?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.attachable.post = function(httpOptions) {
+endpoint.attachable.del.post = function(httpOptions) {
     var url = parse('/attachable?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -257,14 +253,14 @@ endpoint.bill.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.bill.post = function(httpOptions) {
+endpoint.bill.update.post = function(httpOptions) {
     var url = parse('/bill?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.bill.post = function(httpOptions) {
+endpoint.bill.del.post = function(httpOptions) {
     var url = parse('/bill?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -289,14 +285,14 @@ endpoint.billpayment.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.billpayment.post = function(httpOptions) {
+endpoint.billpayment.update.post = function(httpOptions) {
     var url = parse('/billpayment?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.billpayment.post = function(httpOptions) {
+endpoint.billpayment.del.post = function(httpOptions) {
     var url = parse('/billpayment?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -328,7 +324,7 @@ endpoint.class.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.class.post = function(httpOptions) {
+endpoint.class.update.post = function(httpOptions) {
     var url = parse('/class?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -364,14 +360,14 @@ endpoint.creditmemo.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.creditmemo.post = function(httpOptions) {
+endpoint.creditmemo.update.post = function(httpOptions) {
     var url = parse('/creditmemo?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.creditmemo.post = function(httpOptions) {
+endpoint.creditmemo.del.post = function(httpOptions) {
     var url = parse('/creditmemo?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -396,7 +392,7 @@ endpoint.customer.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.customer.post = function(httpOptions) {
+endpoint.customer.update.post = function(httpOptions) {
     var url = parse('/customer?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -421,7 +417,7 @@ endpoint.department.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.department.post = function(httpOptions) {
+endpoint.department.update.post = function(httpOptions) {
     var url = parse('/department?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -446,14 +442,14 @@ endpoint.deposit.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.deposit.post = function(httpOptions) {
+endpoint.deposit.update.post = function(httpOptions) {
     var url = parse('/deposit?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.deposit.post = function(httpOptions) {
+endpoint.deposit.del.post = function(httpOptions) {
     var url = parse('/deposit?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -478,7 +474,7 @@ endpoint.employee.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.employee.post = function(httpOptions) {
+endpoint.employee.update.post = function(httpOptions) {
     var url = parse('/employee?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -503,14 +499,14 @@ endpoint.estimate.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.estimate.post = function(httpOptions) {
+endpoint.estimate.update.post = function(httpOptions) {
     var url = parse('/estimate?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.estimate.post = function(httpOptions) {
+endpoint.estimate.del.post = function(httpOptions) {
     var url = parse('/estimate?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -535,14 +531,14 @@ endpoint.invoice.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.invoice.post = function(httpOptions) {
+endpoint.invoice.update.post = function(httpOptions) {
     var url = parse('/invoice?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.invoice.post = function(httpOptions) {
+endpoint.invoice.del.post = function(httpOptions) {
     var url = parse('/invoice?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -578,7 +574,7 @@ endpoint.item.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.item.post = function(httpOptions) {
+endpoint.item.update.post = function(httpOptions) {
     var url = parse('/item?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -603,7 +599,7 @@ endpoint.journalentry.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.del.journalentry.post = function(httpOptions) {
+endpoint.journalentry.del.post = function(httpOptions) {
     var url = parse('/journalentry?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -628,14 +624,14 @@ endpoint.payment.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.payment.post = function(httpOptions) {
+endpoint.payment.update.post = function(httpOptions) {
     var url = parse('/payment?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.payment.post = function(httpOptions) {
+endpoint.payment.del.post = function(httpOptions) {
     var url = parse('/payment?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -660,7 +656,7 @@ endpoint.paymentmethod.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.paymentmethod.post = function(httpOptions) {
+endpoint.paymentmethod.update.post = function(httpOptions) {
     var url = parse('/paymentmethod?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -674,7 +670,7 @@ endpoint.preferences.get = function(httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.preferences.post = function(httpOptions) {
+endpoint.preferences.update.post = function(httpOptions) {
     var url = parse('/preferences?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -699,14 +695,14 @@ endpoint.purchase.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.purchase.post = function(httpOptions) {
+endpoint.purchase.update.post = function(httpOptions) {
     var url = parse('/purchase?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.purchase.post = function(httpOptions) {
+endpoint.purchase.del.post = function(httpOptions) {
     var url = parse('/purchase?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -731,14 +727,14 @@ endpoint.purchaseorder.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.purchaseorder.post = function(httpOptions) {
+endpoint.purchaseorder.update.post = function(httpOptions) {
     var url = parse('/purchaseorder?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.purchaseorder.post = function(httpOptions) {
+endpoint.purchaseorder.del.post = function(httpOptions) {
     var url = parse('/purchaseorder?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -763,14 +759,14 @@ endpoint.refundreceipt.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.refundreceipt.post = function(httpOptions) {
+endpoint.refundreceipt.update.post = function(httpOptions) {
     var url = parse('/refundreceipt?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.refundreceipt.post = function(httpOptions) {
+endpoint.refundreceipt.del.post = function(httpOptions) {
     var url = parse('/refundreceipt?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -806,14 +802,14 @@ endpoint.salesreceipt.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.salesreceipt.post = function(httpOptions) {
+endpoint.salesreceipt.update.post = function(httpOptions) {
     var url = parse('/salesreceipt?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.salesreceipt.post = function(httpOptions) {
+endpoint.salesreceipt.del.post = function(httpOptions) {
     var url = parse('/salesreceipt?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -885,7 +881,7 @@ endpoint.term.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.term.post = function(httpOptions) {
+endpoint.term.update.post = function(httpOptions) {
     var url = parse('/term?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -910,14 +906,14 @@ endpoint.timeactivity.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.timeactivity.post = function(httpOptions) {
+endpoint.timeactivity.update.post = function(httpOptions) {
     var url = parse('/timeactivity?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.timeactivity.post = function(httpOptions) {
+endpoint.timeactivity.del.post = function(httpOptions) {
     var url = parse('/timeactivity?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -942,14 +938,14 @@ endpoint.transfer.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.transfer.post = function(httpOptions) {
+endpoint.transfer.update.post = function(httpOptions) {
     var url = parse('/transfer?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.transfer.post = function(httpOptions) {
+endpoint.transfer.del.post = function(httpOptions) {
     var url = parse('/transfer?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -974,7 +970,7 @@ endpoint.vendor.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.vendor.post = function(httpOptions) {
+endpoint.vendor.update.post = function(httpOptions) {
     var url = parse('/vendor?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -999,14 +995,14 @@ endpoint.vendorcredit.get = function(entityId, httpOptions) {
     return endpoint._get(options);
 };
 
-endpoint.update.vendorcredit.post = function(httpOptions) {
+endpoint.vendorcredit.update.post = function(httpOptions) {
     var url = parse('/vendorcredit?operation=update');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options);
 };
 
-endpoint.del.vendorcredit.post = function(httpOptions) {
+endpoint.vendorcredit.del.post = function(httpOptions) {
     var url = parse('/vendorcredit?operation=delete');
     sys.logs.debug('[quickbooks] POST from: ' + url);
     var options = checkHttpOptions(url, httpOptions);
@@ -1023,17 +1019,17 @@ endpoint.get = function(url, httpOptions, callbackData, callbacks) {
 };
 
 endpoint.post = function(url, httpOptions, callbackData, callbacks) {
-    options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._post(options, callbackData, callbacks);
 };
 
 endpoint.put = function(url, httpOptions, callbackData, callbacks) {
-    options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._put(options, callbackData, callbacks);
 };
 
 endpoint.patch = function(url, httpOptions, callbackData, callbacks) {
-    options = checkHttpOptions(url, httpOptions);
+    var options = checkHttpOptions(url, httpOptions);
     return endpoint._patch(options, callbackData, callbacks);
 };
 
@@ -1155,7 +1151,7 @@ var parse = function (str) {
         if (arguments.length > 1) {
             var args = arguments[1], i = 0;
             return str.replace(/(:(?:\w|-)+)/g, () => {
-                if (typeof (args[i]) != 'string') throw new Error('Invalid type of argument: [' + args[i] + '] for url [' + str + '].');
+                if (typeof (args[i]) != 'string' || typeof (args[i]) != 'number') throw new Error('Invalid type of argument: [' + args[i] + '] for url [' + str + '].');
                 return args[i++];
             });
         } else {

@@ -9,9 +9,9 @@ The Javascript API of the quickbooks endpoint has three pieces:
 ## HTTP requests
 You can make `POST`,`GET` requests to the [quickbooks API](API_URL_HERE) like this:
 ```javascript
-var response = app.endpoints.quickbooks.post('/deposit?operation=update', body)
-var response = app.endpoints.quickbooks.post('/deposit?operation=update')
-var response = app.endpoints.quickbooks.get('/customer/:entityId')
+var response = app.endpoints.quickbooks.post('/transfer?operation=delete', body)
+var response = app.endpoints.quickbooks.post('/transfer?operation=delete')
+var response = app.endpoints.quickbooks.get('/payment/:entityId')
 ```
 
 Please take a look at the documentation of the [HTTP endpoint](https://github.com/slingr-stack/http-endpoint#javascript-api)
@@ -36,7 +36,7 @@ app.endpoints.quickbooks.account.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.account.post(body)
+app.endpoints.quickbooks.account.update.post(body)
 ```
 ---
 * API URL: '/attachable'
@@ -50,14 +50,14 @@ app.endpoints.quickbooks.attachable.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.attachable.post(body)
+app.endpoints.quickbooks.attachable.update.post(body)
 ```
 ---
 * API URL: '/attachable?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.attachable.post(body)
+app.endpoints.quickbooks.attachable.del.post(body)
 ```
 ---
 * API URL: '/batch'
@@ -78,14 +78,14 @@ app.endpoints.quickbooks.bill.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.bill.post(body)
+app.endpoints.quickbooks.bill.update.post(body)
 ```
 ---
 * API URL: '/bill?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.bill.post(body)
+app.endpoints.quickbooks.bill.del.post(body)
 ```
 ---
 * API URL: '/billpayment'
@@ -99,14 +99,14 @@ app.endpoints.quickbooks.billpayment.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.billpayment.post(body)
+app.endpoints.quickbooks.billpayment.update.post(body)
 ```
 ---
 * API URL: '/billpayment?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.billpayment.post(body)
+app.endpoints.quickbooks.billpayment.del.post(body)
 ```
 ---
 * API URL: '/class'
@@ -120,7 +120,7 @@ app.endpoints.quickbooks.class.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.class.post(body)
+app.endpoints.quickbooks.class.update.post(body)
 ```
 ---
 * API URL: '/creditmemo'
@@ -134,14 +134,14 @@ app.endpoints.quickbooks.creditmemo.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.creditmemo.post(body)
+app.endpoints.quickbooks.creditmemo.update.post(body)
 ```
 ---
 * API URL: '/creditmemo?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.creditmemo.post(body)
+app.endpoints.quickbooks.creditmemo.del.post(body)
 ```
 ---
 * API URL: '/customer'
@@ -155,7 +155,7 @@ app.endpoints.quickbooks.customer.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.customer.post(body)
+app.endpoints.quickbooks.customer.update.post(body)
 ```
 ---
 * API URL: '/department'
@@ -169,7 +169,7 @@ app.endpoints.quickbooks.department.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.department.post(body)
+app.endpoints.quickbooks.department.update.post(body)
 ```
 ---
 * API URL: '/deposit'
@@ -183,14 +183,14 @@ app.endpoints.quickbooks.deposit.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.deposit.post(body)
+app.endpoints.quickbooks.deposit.update.post(body)
 ```
 ---
 * API URL: '/deposit?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.deposit.post(body)
+app.endpoints.quickbooks.deposit.del.post(body)
 ```
 ---
 * API URL: '/employee'
@@ -204,7 +204,7 @@ app.endpoints.quickbooks.employee.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.employee.post(body)
+app.endpoints.quickbooks.employee.update.post(body)
 ```
 ---
 * API URL: '/estimate'
@@ -218,14 +218,14 @@ app.endpoints.quickbooks.estimate.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.estimate.post(body)
+app.endpoints.quickbooks.estimate.update.post(body)
 ```
 ---
 * API URL: '/estimate?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.estimate.post(body)
+app.endpoints.quickbooks.estimate.del.post(body)
 ```
 ---
 * API URL: '/invoice'
@@ -239,14 +239,14 @@ app.endpoints.quickbooks.invoice.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.invoice.post(body)
+app.endpoints.quickbooks.invoice.update.post(body)
 ```
 ---
 * API URL: '/invoice?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.invoice.post(body)
+app.endpoints.quickbooks.invoice.del.post(body)
 ```
 ---
 * API URL: '/invoice/:entityId/send'
@@ -267,7 +267,7 @@ app.endpoints.quickbooks.item.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.item.post(body)
+app.endpoints.quickbooks.item.update.post(body)
 ```
 ---
 * API URL: '/journalentry'
@@ -281,7 +281,7 @@ app.endpoints.quickbooks.journalentry.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.journalentry.post(body)
+app.endpoints.quickbooks.journalentry.del.post(body)
 ```
 ---
 * API URL: '/payment'
@@ -295,14 +295,14 @@ app.endpoints.quickbooks.payment.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.payment.post(body)
+app.endpoints.quickbooks.payment.update.post(body)
 ```
 ---
 * API URL: '/payment?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.payment.post(body)
+app.endpoints.quickbooks.payment.del.post(body)
 ```
 ---
 * API URL: '/paymentmethod'
@@ -316,14 +316,14 @@ app.endpoints.quickbooks.paymentmethod.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.paymentmethod.post(body)
+app.endpoints.quickbooks.paymentmethod.update.post(body)
 ```
 ---
 * API URL: '/preferences?operation=update'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.preferences.post(body)
+app.endpoints.quickbooks.preferences.update.post(body)
 ```
 ---
 * API URL: '/purchase'
@@ -337,14 +337,14 @@ app.endpoints.quickbooks.purchase.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.purchase.post(body)
+app.endpoints.quickbooks.purchase.update.post(body)
 ```
 ---
 * API URL: '/purchase?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.purchase.post(body)
+app.endpoints.quickbooks.purchase.del.post(body)
 ```
 ---
 * API URL: '/purchaseorder'
@@ -358,14 +358,14 @@ app.endpoints.quickbooks.purchaseorder.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.purchaseorder.post(body)
+app.endpoints.quickbooks.purchaseorder.update.post(body)
 ```
 ---
 * API URL: '/purchaseorder?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.purchaseorder.post(body)
+app.endpoints.quickbooks.purchaseorder.del.post(body)
 ```
 ---
 * API URL: '/refundreceipt'
@@ -379,14 +379,14 @@ app.endpoints.quickbooks.refundreceipt.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.refundreceipt.post(body)
+app.endpoints.quickbooks.refundreceipt.update.post(body)
 ```
 ---
 * API URL: '/refundreceipt?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.refundreceipt.post(body)
+app.endpoints.quickbooks.refundreceipt.del.post(body)
 ```
 ---
 * API URL: '/salesreceipt'
@@ -400,14 +400,14 @@ app.endpoints.quickbooks.salesreceipt.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.salesreceipt.post(body)
+app.endpoints.quickbooks.salesreceipt.update.post(body)
 ```
 ---
 * API URL: '/salesreceipt?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.salesreceipt.post(body)
+app.endpoints.quickbooks.salesreceipt.del.post(body)
 ```
 ---
 * API URL: '/taxagency'
@@ -435,7 +435,7 @@ app.endpoints.quickbooks.term.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.term.post(body)
+app.endpoints.quickbooks.term.update.post(body)
 ```
 ---
 * API URL: '/timeactivity'
@@ -449,14 +449,14 @@ app.endpoints.quickbooks.timeactivity.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.timeactivity.post(body)
+app.endpoints.quickbooks.timeactivity.update.post(body)
 ```
 ---
 * API URL: '/timeactivity?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.timeactivity.post(body)
+app.endpoints.quickbooks.timeactivity.del.post(body)
 ```
 ---
 * API URL: '/transfer'
@@ -470,14 +470,14 @@ app.endpoints.quickbooks.transfer.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.transfer.post(body)
+app.endpoints.quickbooks.transfer.update.post(body)
 ```
 ---
 * API URL: '/transfer?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.transfer.post(body)
+app.endpoints.quickbooks.transfer.del.post(body)
 ```
 ---
 * API URL: '/vendor'
@@ -491,7 +491,7 @@ app.endpoints.quickbooks.vendor.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.vendor.post(body)
+app.endpoints.quickbooks.vendor.update.post(body)
 ```
 ---
 * API URL: '/vendorcredit'
@@ -505,14 +505,14 @@ app.endpoints.quickbooks.vendorcredit.post(body)
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.update.vendorcredit.post(body)
+app.endpoints.quickbooks.vendorcredit.update.post(body)
 ```
 ---
 * API URL: '/vendorcredit?operation=delete'
 * HTTP Method: 'POST'
 * More info: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account
 ```javascript
-app.endpoints.quickbooks.del.vendorcredit.post(body)
+app.endpoints.quickbooks.vendorcredit.del.post(body)
 ```
 ---
 * API URL: '/account/:entityId'
