@@ -41,7 +41,7 @@ To obtain the requested fields for configuration you need to log in to your intu
  - Then click on Get Tokens button.
 
  - Once you have the Tokens you can start making calls to the API. On this screen you need to access to the step 4 and copy
- the Access Token, the Refresh Token and Minor Version to the endpoint configuration. QuickBooks Online data services support 
+ the Access Token and the Refresh Token to the endpoint configuration. QuickBooks Online data services support 
  minor versions in order to provide a way for you to access incremental changes without breaking existing apps.
 
 ## Webhooks

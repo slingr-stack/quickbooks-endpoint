@@ -37,7 +37,6 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     private static final String QUICKBOOKS_SANDBOX_URL = "https://sandbox-quickbooks.api.intuit.com/v3/company/%s";
     private static final String QUICKBOOKS_PRODUCTION_URL = "https://quickbooks.api.intuit.com/v3/company/%s";
     private static final String QUICKBOOKS_REFRESH_TOKEN_URL = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
-    private static final String INVALID_TOKEN_ERROR = "Bearer realm=\"Intuit\", error=\"invalid_token\"";
     private static final String INTUIT_SIGNATURE = "Intuit-Signature";
     private static final String ALGORITHM = "HmacSHA256";
     private static final String LAST_TOKEN = "_LAST_TOKEN";
@@ -112,11 +111,12 @@ public class QuickBooksEndpoint extends HttpEndpoint {
         try {
             return defaultGetRequest(request);
         } catch (EndpointException restException) {
-            if (checkInvalidTokenError(restException)) {
+            try {
                 this.refreshQuickBooksToken();
                 return defaultGetRequest(request);
+            } catch (EndpointException restException2) {
+                throw restException;
             }
-            throw restException;
         }
     }
 
@@ -125,22 +125,14 @@ public class QuickBooksEndpoint extends HttpEndpoint {
         try {
             return defaultPostRequest(request);
         } catch (EndpointException restException) {
-            if (checkInvalidTokenError(restException)) {
+            try {
                 this.refreshQuickBooksToken();
                 return defaultPostRequest(request);
             }
-            throw restException;
+            catch (EndpointException restException2) {
+                throw restException;
+            }
         }
-    }
-
-    private boolean checkInvalidTokenError(Exception e) {
-        if (e instanceof EndpointException) {
-            EndpointException restException = (EndpointException) e;
-            return restException.getAdditionalInfo() != null && restException.getAdditionalInfo().json("headers") != null &&
-                    StringUtils.isNotBlank(restException.getAdditionalInfo().json("headers").string("WWW-Authenticate")) &&
-                    restException.getAdditionalInfo().json("headers").string("WWW-Authenticate").equals(INVALID_TOKEN_ERROR);
-        }
-        return false;
     }
 
     @EndpointWebService
