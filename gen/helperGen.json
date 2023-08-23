@@ -75,7 +75,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/attachable?operation=delete",
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/bill?operation=delete",
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/billpayment?operation=delete",
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/creditmemo?operation=delete",
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/deposit?operation=delete",
@@ -428,7 +428,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/estimate?operation=delete",
@@ -468,7 +468,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/invoice?operation=delete",
@@ -538,7 +538,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/journalentry?operation=delete",
@@ -578,7 +578,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/payment?operation=delete",
@@ -668,7 +668,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/purchase?operation=delete",
@@ -708,7 +708,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/purchaseorder?operation=delete",
@@ -748,7 +748,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/refundreceipt?operation=delete",
@@ -798,7 +798,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/salesreceipt?operation=delete",
@@ -918,7 +918,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/timeactivity?operation=delete",
@@ -958,7 +958,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/transfer?operation=delete",
@@ -1028,7 +1028,7 @@
       ]
     },
     {
-      "suffix": "del",
+      "suffix": "delete",
       "prefix": "",
       "method": "POST",
       "url": "/vendorcredit?operation=delete",
