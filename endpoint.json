@@ -36,6 +36,14 @@
     {
       "label": "POST",
       "name": "_post"
+    },
+    {
+      "label": "Convert date to time",
+      "name": "_convertDateToTimestamp"
+    },
+    {
+      "label": "Format from milliseconds",
+      "name": "_formatFromMillis"
     }
   ],
   "scripts": [
