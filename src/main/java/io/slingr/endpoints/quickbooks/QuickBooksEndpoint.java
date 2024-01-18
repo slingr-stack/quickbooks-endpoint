@@ -6,8 +6,6 @@ import io.slingr.endpoints.framework.annotations.*;
 import io.slingr.endpoints.services.AppLogs;
 import io.slingr.endpoints.services.HttpService;
 import io.slingr.endpoints.services.datastores.DataStore;
-import io.slingr.endpoints.services.datastores.DataStoreResponse;
-import io.slingr.endpoints.services.rest.RestClient;
 import io.slingr.endpoints.services.rest.RestMethod;
 import io.slingr.endpoints.utils.Json;
 import io.slingr.endpoints.ws.exchange.FunctionRequest;
@@ -19,11 +17,16 @@ import org.slf4j.LoggerFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import javax.ws.rs.core.Form;
-import java.nio.charset.StandardCharsets;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * QuickBooks endpoint
@@ -34,20 +37,17 @@ import java.util.Base64;
 public class QuickBooksEndpoint extends HttpEndpoint {
     private static final Logger logger = LoggerFactory.getLogger(QuickBooksEndpoint.class);
 
-    private static final String QUICKBOOKS_SANDBOX_URL = "https://sandbox-quickbooks.api.intuit.com/v3/company/%s";
-    private static final String QUICKBOOKS_PRODUCTION_URL = "https://quickbooks.api.intuit.com/v3/company/%s";
-    private static final String QUICKBOOKS_REFRESH_TOKEN_URL = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
+    private static final String QUICKBOOKS_SANDBOX_URL = "https://sandbox-quickbooks.api.intuit.com/v3/company/%s/";
+    private static final String QUICKBOOKS_PRODUCTION_URL = "https://quickbooks.api.intuit.com/v3/company/%s/";
+    private static final String INVALID_TOKEN_ERROR = "Bearer realm=\"Intuit\", error=\"invalid_token\"";
+    private static final String QUICKBOOKS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
     private static final String INTUIT_SIGNATURE = "Intuit-Signature";
     private static final String ALGORITHM = "HmacSHA256";
-    private static final String LAST_TOKEN = "_LAST_TOKEN";
-    private static final String ID = "_id";
-    private static final String TIMESTAMP = "timestamp";
-    private static final String REFRESH_TOKEN = "refreshToken";
-    private static final String ACCESS_TOKEN = "accessToken";
-    private static final String VERIFIER_TOKEN = "verifierToken";
 
-    @EndpointDataStore
-    private DataStore tokens;
+    private static final long TOKEN_REFRESH_POLLING_TIME = TimeUnit.MINUTES.toMillis(50);
+
+    @EndpointDataStore(name = TokenManager.DATA_STORE)
+    private DataStore tokensDataStore;
 
     @EndpointProperty
     private String clientId;
@@ -73,132 +73,137 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     @ApplicationLogger
     private AppLogs appLogger;
 
+    private ScheduledExecutorService cleanerExecutor;
+
+    private TokenManager tokenManager;
+
     @Override
     public String getApiUri() {
-        if (quickBooksEnvironment.equalsIgnoreCase("PRODUCTION")) {
-            return String.format(QUICKBOOKS_PRODUCTION_URL, companyId.trim());
+        switch (quickBooksEnvironment.toUpperCase()) {
+            case "PRODUCTION":
+                return String.format(QUICKBOOKS_PRODUCTION_URL, companyId.trim());
+            case "SANDBOX":
+            default:
+                return String.format(QUICKBOOKS_SANDBOX_URL, companyId.trim());
         }
-        return String.format(QUICKBOOKS_SANDBOX_URL, companyId.trim());
     }
 
     @Override
     public void endpointStarted() {
-        logger.info("Starting endpoint");
-        Json filter = Json.map();
-        filter.set(ACCESS_TOKEN, this.accessToken);
-        filter.set(REFRESH_TOKEN, this.refreshToken);
-        Json lastToken = this.getLastToken();
-        DataStoreResponse dsResp = tokens.find(filter);
-        if (dsResp != null && dsResp.getItems().size() == 0 || lastToken == null) {
-            Json newToken = Json.map();
-            newToken.set(ACCESS_TOKEN, this.accessToken);
-            newToken.set(REFRESH_TOKEN, this.refreshToken);
-            newToken.set(VERIFIER_TOKEN, verifierToken);
-            newToken.set(TIMESTAMP, System.currentTimeMillis());
-            newToken.set(ID, LAST_TOKEN);
-            this.tokens.save(newToken);
-        } else {
-            this.accessToken = lastToken.string(ACCESS_TOKEN);
-            this.refreshToken= lastToken.string(REFRESH_TOKEN);
-            this.verifierToken = lastToken.string(VERIFIER_TOKEN);
-        }
-        httpService().setupBearerAuthenticationHeader(this.accessToken);
-        httpService().setupDefaultHeader("Accept", "application/json");
-    }
 
-    @EndpointFunction(name = "_get")
-    public Json get(FunctionRequest request) {
-        try {
-            return defaultGetRequest(request);
-        } catch (EndpointException restException) {
-            try {
-                this.refreshQuickBooksToken();
-                return defaultGetRequest(request);
-            } catch (EndpointException restException2) {
-                throw restException;
-            }
-        }
-    }
+        this.tokenManager = new TokenManager(httpService(), tokensDataStore, clientId, clientSecret, accessToken, refreshToken, verifierToken);
 
-    @EndpointFunction(name = "_post")
-    public Json post(FunctionRequest request) {
-        try {
-            return defaultPostRequest(request);
-        } catch (EndpointException restException) {
-            try {
-                this.refreshQuickBooksToken();
-                return defaultPostRequest(request);
-            }
-            catch (EndpointException restException2) {
-                throw restException;
-            }
-        }
+        Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(tokenManager::refreshQuickBooksToken, TOKEN_REFRESH_POLLING_TIME, TOKEN_REFRESH_POLLING_TIME, TimeUnit.MILLISECONDS);
     }
 
     @EndpointWebService
     public WebServiceResponse webhooks(WebServiceRequest request) {
-        RestMethod method = request.getMethod();
-        Object body = request.getBody();
-        String rawBody = request.getRawBody();
-        String signature = request.getHeader(INTUIT_SIGNATURE);
-        if (method.equals(RestMethod.POST) && body != null) {
+        if (request.getMethod().equals(RestMethod.POST) && request.getBody() != null) {
+            // verifying signature
+            String signature = request.getHeader(INTUIT_SIGNATURE);
             if (StringUtils.isBlank(signature)) {
+                // try to get signature using lower case as sometimes it seems to come like this
                 signature = request.getHeader(INTUIT_SIGNATURE.toLowerCase());
             }
-            if (verifyWebHooksSignature(signature, rawBody)) {
+            if (verifyWebHooksSignature(signature, request.getRawBody())) {
+                // send the webhook event
                 final Json json = HttpService.defaultWebhookConverter(request);
                 events().send(HttpService.WEBHOOK_EVENT, json);
             } else {
-                appLogger.warn("Webhook was not processed due to invalid signature: "+signature+". Body: "+rawBody);
+                appLogger.warn("Webhook was not processed due to invalid signature: "+signature+". Body: "+request.getRawBody());
                 return HttpService.defaultWebhookResponse("Invalid signature", 403);
             }
         }
         return HttpService.defaultWebhookResponse();
     }
 
+    @EndpointFunction(name = "_post")
+    public Json post(FunctionRequest request) {
+        try {
+            // continue with the default processor
+            return defaultPostRequest(request);
+        } catch (EndpointException restException) {
+            if (checkInvalidTokenError(restException)) {
+                //needs to refresh token
+                tokenManager.refreshQuickBooksToken();
+                return defaultPostRequest(request);
+            }
+            throw restException;
+        }
+    }
+
+    @EndpointFunction(name = "_get")
+    public Json get(FunctionRequest request) {
+        try {
+            // continue with the default processor
+            return defaultGetRequest(request);
+        } catch (EndpointException restException) {
+            if (checkInvalidTokenError(restException)) {
+                //needs to refresh token
+                tokenManager.refreshQuickBooksToken();
+                return defaultGetRequest(request);
+            }
+            throw restException;
+        }
+    }
+
+    private boolean checkInvalidTokenError(Exception e) {
+        if (e instanceof EndpointException) {
+            EndpointException restException = (EndpointException) e;
+            return restException.getAdditionalInfo() != null && restException.getAdditionalInfo().json("headers") != null &&
+                    StringUtils.isNotBlank(restException.getAdditionalInfo().json("headers").string("WWW-Authenticate")) &&
+                    restException.getAdditionalInfo().json("headers").string("WWW-Authenticate").equals(INVALID_TOKEN_ERROR);
+        }
+        return false;
+    }
+
+    @EndpointFunction(name = "_convertDateToTimestamp")
+    public Json convertDateToTimestamp(Json params) throws IllegalArgumentException {
+        if (params != null && params.size() > 0) {
+            String dateStr = params.string("date");
+            if (StringUtils.isEmpty(dateStr)) {
+                throw new IllegalArgumentException("Parameter 'date' is required");
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat(QUICKBOOKS_DATE_FORMAT);
+            try {
+                Json res = Json.map();
+                Date d = sdf.parse(dateStr);
+                return res.set("timestamp", d.getTime());
+            } catch (ParseException e) {
+                throw new IllegalArgumentException(String.format("Parameter '%s' can not be converted.", dateStr));
+            }
+        }
+        return null;
+    }
+
+    @EndpointFunction(name = "_formatFromMillis")
+    public Json formatFromMillis(Json params) {
+        if (params != null && params.size() > 0) {
+            long millis = params.longInteger("millis");
+            SimpleDateFormat sdf = new SimpleDateFormat(QUICKBOOKS_DATE_FORMAT);
+            Json res = Json.map();
+            Date d = new Date(millis);
+            return res.set("date", sdf.format(d));
+        }
+        return null;
+    }
+
     private boolean verifyWebHooksSignature(String signature, String payload) {
         if (StringUtils.isBlank(verifierToken)) {
-            return true;
+            return true;//we can't verify the signature since the verifier token is not configured
         }
         if (signature == null) {
             return false;
         }
         try {
-            SecretKeySpec secretKey = new SecretKeySpec(verifierToken.getBytes(StandardCharsets.UTF_8), ALGORITHM);
+            SecretKeySpec secretKey = new SecretKeySpec(verifierToken.getBytes("UTF-8"), ALGORITHM);
             Mac mac = Mac.getInstance(ALGORITHM);
             mac.init(secretKey);
+            // TODO check if is possible to replace with Base64Utils.encode()
             String hash = Base64.getEncoder().encodeToString(mac.doFinal(payload.getBytes()));
             return hash.equals(signature);
-        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException | InvalidKeyException e) {
             return false;
         }
-    }
-
-    private Json getLastToken() {
-        try {
-            return this.tokens.findById(LAST_TOKEN);
-        } catch (Exception ex) {
-            return null;
-        }
-    }
-
-    private void refreshQuickBooksToken() {
-        Json refreshTokenResponse = RestClient.builder(QUICKBOOKS_REFRESH_TOKEN_URL)
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .header("Accept", "application/json")
-                .basicAuthenticationHeader(clientId, clientSecret)
-                .post(new Form().param("grant_type", "refresh_token").param("refresh_token", refreshToken));
-        accessToken = refreshTokenResponse.string("access_token");
-        refreshToken = refreshTokenResponse.string("refresh_token");
-        Json lastToken = this.getLastToken();
-        if (lastToken != null) {
-            lastToken
-                    .set(ACCESS_TOKEN, accessToken)
-                    .set(REFRESH_TOKEN, refreshToken)
-                    .set(TIMESTAMP, System.currentTimeMillis());
-        }
-        this.tokens.save(lastToken);
-        httpService().setupBearerAuthenticationHeader(this.accessToken);
-        httpService().setupDefaultHeader("Accept", "application/json");
     }
 }
