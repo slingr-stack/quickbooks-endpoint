@@ -5,10 +5,14 @@ import io.slingr.endpoints.services.datastores.DataStore;
 import io.slingr.endpoints.services.datastores.DataStoreResponse;
 import io.slingr.endpoints.services.rest.RestClient;
 import io.slingr.endpoints.utils.Json;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.Form;
 
 public class TokenManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(TokenManager.class);
 
     private static final String QUICKBOOKS_REFRESH_TOKEN_URL = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
 
@@ -52,7 +56,7 @@ public class TokenManager {
         Json lastToken = this.getLastToken();
         DataStoreResponse dsResp = ds.find(filter);
 
-        if (dsResp != null && dsResp.getItems().size() == 0 || lastToken == null) { // new token was added
+        if (dsResp != null && dsResp.getItems().isEmpty() || lastToken == null) { // new token was added
 
             Json newToken = Json.map();
             newToken.set(ACCESS_TOKEN, this.accessToken);
@@ -81,26 +85,36 @@ public class TokenManager {
     }
 
     public void refreshQuickBooksToken() {
+        try {
+            // Logging before the method execution
+            logger.info("Refreshing QuickBooks token...");
 
-        Form formBody = new Form().param("grant_type", "refresh_token").param("refresh_token", refreshToken);
-        Json refreshTokenResponse = RestClient.builder(QUICKBOOKS_REFRESH_TOKEN_URL)
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .header("Accept", "application/json")
-                .basicAuthenticationHeader(clientId, clientSecret)
-                .post(formBody);
+            Form formBody = new Form().param("grant_type", "refresh_token").param("refresh_token", refreshToken);
+            Json refreshTokenResponse = RestClient.builder(QUICKBOOKS_REFRESH_TOKEN_URL)
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .header("Accept", "application/json")
+                    .basicAuthenticationHeader(clientId, clientSecret)
+                    .post(formBody);
 
-        refreshToken = refreshTokenResponse.string("refresh_token");
-        accessToken = refreshTokenResponse.string("access_token");
+            refreshToken = refreshTokenResponse.string("refresh_token");
+            accessToken = refreshTokenResponse.string("access_token");
 
-        Json lastToken = this.getLastToken();
+            Json lastToken = this.getLastToken();
 
-        lastToken.set(ACCESS_TOKEN, accessToken);
-        lastToken.set(REFRESH_TOKEN, refreshToken);
-        lastToken.set(TIMESTAMP, System.currentTimeMillis());
-        ds.save(lastToken);
+            lastToken.set(ACCESS_TOKEN, accessToken);
+            lastToken.set(REFRESH_TOKEN, refreshToken);
+            lastToken.set(TIMESTAMP, System.currentTimeMillis());
+            ds.save(lastToken);
 
-        this.setupToken();
+            this.setupToken();
 
+            // Logging after the method execution
+            logger.info("QuickBooks token refreshed successfully.");
+        } catch (Exception e) {
+            // Logging in case of an exception
+            logger.error("Error occurred while refreshing QuickBooks token: {}", e.getMessage(), e);
+            throw new RuntimeException("Error occurred while refreshing QuickBooks token", e);
+        }
     }
 
     public void setupToken() {
