@@ -92,6 +92,7 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     public void endpointStarted() {
         httpService().setAllowExternalUrl(true);
         this.tokenManager = new TokenManager(httpService(), tokensDataStore, clientId, clientSecret, accessToken, refreshToken, verifierToken);
+
         Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(tokenManager::refreshQuickBooksToken, TOKEN_REFRESH_POLLING_TIME, TOKEN_REFRESH_POLLING_TIME, TimeUnit.MILLISECONDS);
     }
 
@@ -119,33 +120,27 @@ public class QuickBooksEndpoint extends HttpEndpoint {
     @EndpointFunction(name = "_post")
     public Json post(FunctionRequest request) {
         try {
-            logger.info("Processing POST request...");
-            Json response = defaultPostRequest(request);
-            logger.info("POST request processed successfully.");
-            return response;
+            // continue with the default processor
+            return defaultPostRequest(request);
         } catch (EndpointException restException) {
-            logger.error("Error occurred while processing POST request: {}", restException.getMessage(), restException);
             if (checkInvalidTokenError(restException)) {
+                //needs to refresh token
                 tokenManager.refreshQuickBooksToken();
-                logger.info("Retrying POST request after token refresh...");
                 return defaultPostRequest(request);
             }
-            // Rethrow the exception
             throw restException;
         }
     }
 
+    @EndpointFunction(name = "_get")
     public Json get(FunctionRequest request) {
         try {
-            logger.info("Processing GET request...");
-            Json response = defaultGetRequest(request);
-            logger.info("GET request processed successfully.");
-            return response;
+            // continue with the default processor
+            return defaultGetRequest(request);
         } catch (EndpointException restException) {
-            logger.error("Error occurred while processing GET request: {}", restException.getMessage(), restException);
             if (checkInvalidTokenError(restException)) {
+                //needs to refresh token
                 tokenManager.refreshQuickBooksToken();
-                logger.info("Retrying GET request after token refresh...");
                 return defaultGetRequest(request);
             }
             throw restException;
