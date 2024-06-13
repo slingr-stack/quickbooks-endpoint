@@ -38,6 +38,10 @@
       "name": "_post"
     },
     {
+      "label": "DELETE",
+      "name": "_delete"
+    },
+    {
       "label": "Convert date to time",
       "name": "_convertDateToTimestamp"
     },

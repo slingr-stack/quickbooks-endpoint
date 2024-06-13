@@ -147,6 +147,21 @@ public class QuickBooksEndpoint extends HttpEndpoint {
         }
     }
 
+    @EndpointFunction(name = "_delete")
+    public Json delete(FunctionRequest request) {
+        try {
+            return defaultDeleteRequest(request);
+        } catch (EndpointException restException) {
+            if (checkInvalidTokenError(restException)) {
+                tokenManager.refreshQuickBooksToken();
+                return defaultPostRequest(request);
+            } else if (restException.getMessage() != null && restException.getMessage().contains("Unable to parse \"Content-Type\"")) {
+                return Json.map();
+            }
+            throw restException;
+        }
+    }
+
     private boolean checkInvalidTokenError(Exception e) {
         if (e instanceof EndpointException) {
             EndpointException restException = (EndpointException) e;
